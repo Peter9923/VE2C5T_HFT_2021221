@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using VE2C5T_HFT_2021221.Data;
 
 namespace VE2C5T_HFT_2021221.Client
 {
@@ -6,7 +8,9 @@ namespace VE2C5T_HFT_2021221.Client
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            PetOwnerPetVetContext POPVC = new PetOwnerPetVetContext();
+            
+            ;
         }
     }
 }

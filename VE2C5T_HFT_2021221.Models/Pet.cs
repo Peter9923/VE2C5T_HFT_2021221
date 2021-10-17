@@ -18,7 +18,7 @@ namespace VE2C5T_HFT_2021221.Models
         public string Name { get; set; }
 
         [Required]
-        public string FavouriteFood { get; set; }
+        public string Species { get; set; }
 
         [ForeignKey(nameof(PetOwner))]
         public int PetOwnerId { get; set; }
