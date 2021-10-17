@@ -8,7 +8,7 @@ namespace VE2C5T_HFT_2021221.Client
     {
         static void Main(string[] args)
         {
-            PetOwnerPetVetContext POPVC = new PetOwnerPetVetContext();
+            MyDbContext mdc = new Data.MyDbContext();
             
             ;
         }
