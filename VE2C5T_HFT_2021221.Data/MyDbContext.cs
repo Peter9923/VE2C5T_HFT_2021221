@@ -16,7 +16,7 @@ namespace VE2C5T_HFT_2021221.Data
 
         public MyDbContext()
         {
-            Database.EnsureCreated();
+            this.Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
