@@ -10,9 +10,9 @@ namespace VE2C5T_HFT_2021221.Data
 {
     public class MyDbContext : DbContext
     {
-        public virtual DbSet<PetOwner> PetOwner { get; set; }
+        public virtual DbSet<PetOwner> PetOwners { get; set; }
         public virtual DbSet<Pet> Pets { get; set; }
-        public virtual DbSet<Vet> Vet { get; set; }
+        public virtual DbSet<Vet> Vets { get; set; }
 
         public MyDbContext()
         {

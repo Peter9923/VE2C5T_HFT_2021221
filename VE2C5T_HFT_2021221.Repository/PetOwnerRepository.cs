@@ -8,63 +8,61 @@ using VE2C5T_HFT_2021221.Models;
 
 namespace VE2C5T_HFT_2021221.Repository
 {
-    class PetRepository : IPetRepository
+    class PetOwnerRepository : IPetOwnerRepository
     {
         MyDbContext context;
 
-        public PetRepository(MyDbContext context)
+        public PetOwnerRepository(MyDbContext context)
         {
             this.context = context;
         }
 
-        public void Create(Pet pet)
+        public void Create(PetOwner petOwner)
         {
-            context.Pets.Add(pet);
+            context.PetOwners.Add(petOwner);
             context.SaveChanges();
         }
 
-        public Pet Read(int id)
+        public PetOwner Read(int id)
         {
             return context
-                .Pets
+                .PetOwners
                 .FirstOrDefault(x => x.Id == id);
         }
 
-        public void Update(Pet pet)
+        public void Update(PetOwner petOwner)
         {
             // regi objektum lekerdezese
-            Pet oldPet = Read(pet.Id);
+            PetOwner oldPetOwner = Read(petOwner.Id);
 
             // TODO: null check
 
-            if (oldPet == null)
+            if (oldPetOwner == null)
             {
                 throw new ArgumentNullException();
             }
 
             // tulajdonsagok felulirasa
 
-            oldPet.Name = pet.Name;
-            oldPet.Species = pet.Species;
-            oldPet.PetOwnerId = pet.PetOwnerId;
-            oldPet.VetId = pet.VetId;
+            oldPetOwner.Name = petOwner.Name;
+            oldPetOwner.PhoneNumber = petOwner.PhoneNumber;
 
             context.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            Pet pet = context
-                .Pets
+            PetOwner petOwner = context
+                .PetOwners
                 .FirstOrDefault(x => x.Id == id);
 
-            context.Pets.Remove(pet);
+            context.PetOwners.Remove(petOwner);
             context.SaveChanges();
         }
 
-        public IQueryable<Pet> ReadAll()
+        public IQueryable<PetOwner> ReadAll()
         {
-            return context.Pets;
+            return context.PetOwners;
         }
 
         
