@@ -7,12 +7,12 @@ using VE2C5T_HFT_2021221.Models;
 
 namespace VE2C5T_HFT_2021221.Repository
 {
-    interface IPetRepository
+    interface IPetOwnerRepository
     {
-        void Create(Pet pet);
-        Pet Read(int id);
-        IQueryable<Pet> ReadAll();
-        void Update(Pet pet);
+        void Create(PetOwner petOwner);
+        PetOwner Read(int id);
+        IQueryable<PetOwner> ReadAll();
+        void Update(PetOwner petOwner);
         void Delete(int id);
     }
 }
