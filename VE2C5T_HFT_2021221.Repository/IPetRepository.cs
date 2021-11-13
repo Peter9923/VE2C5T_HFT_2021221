@@ -7,7 +7,7 @@ using VE2C5T_HFT_2021221.Models;
 
 namespace VE2C5T_HFT_2021221.Repository
 {
-    interface IPetRepository
+    public interface IPetRepository
     {
         void Create(Pet pet);
         Pet Read(int id);

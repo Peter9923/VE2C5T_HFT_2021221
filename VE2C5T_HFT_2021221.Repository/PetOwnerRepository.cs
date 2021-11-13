@@ -8,7 +8,7 @@ using VE2C5T_HFT_2021221.Models;
 
 namespace VE2C5T_HFT_2021221.Repository
 {
-    class PetOwnerRepository : IPetOwnerRepository
+    public class PetOwnerRepository : IPetOwnerRepository
     {
         MyDbContext context;
 
