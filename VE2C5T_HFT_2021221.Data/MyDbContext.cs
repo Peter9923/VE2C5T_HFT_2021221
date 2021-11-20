@@ -57,13 +57,13 @@ namespace VE2C5T_HFT_2021221.Data
             Vet vet2 = new Vet() { Id = 2, Name = "Dr. Gipsz Jakab", PhoneNumber = "+36209874562" };
             Vet vet3 = new Vet() { Id = 3, Name = "Dr. Bubó", PhoneNumber = "+36998887766" };
 
-            Pet pet1 = new Pet() { Id = 1, Name = "Fibi", Species = "Kutya", PetOwnerId = owner1.Id, VetId = vet1.Id };
-            Pet pet2 = new Pet() { Id = 2, Name = "Max", Species = "Kutya", PetOwnerId = owner1.Id, VetId = vet3.Id };
-            Pet pet3 = new Pet() { Id = 3, Name = "Gábor", Species = "Macska", PetOwnerId = owner2.Id, VetId = vet2.Id };
-            Pet pet4 = new Pet() { Id = 4, Name = "Némó", Species = "Hal", PetOwnerId = owner3.Id, VetId = vet3.Id };
-            Pet pet5 = new Pet() { Id = 5, Name = "Charlie", Species = "Majom", PetOwnerId = owner1.Id, VetId = vet2.Id };
-            Pet pet6 = new Pet() { Id = 6, Name = "Kis Krampusz", Species = "Kutya", PetOwnerId = owner2.Id, VetId = vet1.Id };
-            Pet pet7 = new Pet() { Id = 7, Name = "Julien Király", Species = "Gyűrűsfarkú maki", PetOwnerId = owner1.Id, VetId = vet1.Id };
+            Pet pet1 = new Pet() { Id = 1, Name = "Fibi", Weight = 15, Age = 2, MonthlyCostInHUF = 10000, Species = "Kutya", PetOwnerId = owner1.Id, VetId = vet1.Id };
+            Pet pet2 = new Pet() { Id = 2, Name = "Max", Weight = 20, Age = 10, MonthlyCostInHUF = 12500, Species = "Kutya", PetOwnerId = owner1.Id, VetId = vet3.Id };
+            Pet pet3 = new Pet() { Id = 3, Name = "Gábor", Species = "Macska", Weight = 5, Age = 8, MonthlyCostInHUF = 3500, PetOwnerId = owner2.Id, VetId = vet2.Id };
+            Pet pet4 = new Pet() { Id = 4, Name = "Némó", Species = "Hal", Weight = 0.2, Age = 1, MonthlyCostInHUF = 2000 , PetOwnerId = owner3.Id, VetId = vet3.Id };
+            Pet pet5 = new Pet() { Id = 5, Name = "Charlie", Species = "Csimpánz", Weight = 50, Age = 25, MonthlyCostInHUF = 40000, PetOwnerId = owner1.Id, VetId = vet2.Id };
+            Pet pet6 = new Pet() { Id = 6, Name = "Kis Krampusz", Species = "Kutya",Weight = 20, Age = 15, MonthlyCostInHUF=10000, PetOwnerId = owner2.Id, VetId = vet1.Id };
+            Pet pet7 = new Pet() { Id = 7, Name = "Julien Király", Species = "Gyűrűsfarkú maki", Weight = 2.2 , Age = 18, MonthlyCostInHUF = 30000, PetOwnerId = owner1.Id, VetId = vet1.Id };
 
             modelBuilder.Entity<PetOwner>().HasData(owner1, owner2, owner3);
             modelBuilder.Entity<Vet>().HasData(vet1, vet2, vet3);

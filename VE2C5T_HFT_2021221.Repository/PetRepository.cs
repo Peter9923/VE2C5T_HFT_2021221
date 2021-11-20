@@ -46,6 +46,9 @@ namespace VE2C5T_HFT_2021221.Repository
 
             oldPet.Name = pet.Name;
             oldPet.Species = pet.Species;
+            oldPet.Weight = pet.Weight;
+            oldPet.Age = pet.Age;
+            oldPet.MonthlyCostInHUF = pet.MonthlyCostInHUF;
             oldPet.PetOwnerId = pet.PetOwnerId;
             oldPet.VetId = pet.VetId;
 

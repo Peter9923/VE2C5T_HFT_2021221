@@ -20,6 +20,15 @@ namespace VE2C5T_HFT_2021221.Models
         [Required]
         public string Species { get; set; }
 
+        [Required]
+        public double Weight { get; set; }
+
+        [Required]
+        public int Age { get; set; }
+
+        [Required]
+        public int MonthlyCostInHUF { get; set; }
+
         [ForeignKey(nameof(PetOwner))]
         public int PetOwnerId { get; set; }
 
