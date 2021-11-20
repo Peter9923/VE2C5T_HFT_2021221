@@ -46,6 +46,8 @@ namespace VE2C5T_HFT_2021221.Repository
 
             oldVet.Name = vet.Name;
             oldVet.PhoneNumber = vet.PhoneNumber;
+            oldVet.SalaryInHUF = vet.SalaryInHUF;
+            oldVet.Age = vet.Age;
 
             context.SaveChanges();
         }

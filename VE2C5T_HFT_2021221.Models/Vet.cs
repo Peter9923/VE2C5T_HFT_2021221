@@ -20,6 +20,11 @@ namespace VE2C5T_HFT_2021221.Models
         [Required]
         public string PhoneNumber { get; set; }
 
+        [Required]
+        public double SalaryInHUF { get; set; }
+        [Required]
+        public int Age { get; set; }
+
         [NotMapped]
         public virtual ICollection<Pet> PetPatients { get; set; }
 

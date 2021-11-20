@@ -53,9 +53,9 @@ namespace VE2C5T_HFT_2021221.Data
             PetOwner owner2 = new PetOwner() { Id = 2, Name = "Neumann Norbert", PhoneNumber = "+36301234567" };
             PetOwner owner3 = new PetOwner() { Id = 3, Name = "Triff Ádám", PhoneNumber = "+36207654321" };
 
-            Vet vet1 = new Vet() { Id = 1, Name = "Dr. Soós Ferenc", PhoneNumber = "+36309513506" };
-            Vet vet2 = new Vet() { Id = 2, Name = "Dr. Gipsz Jakab", PhoneNumber = "+36209874562" };
-            Vet vet3 = new Vet() { Id = 3, Name = "Dr. Bubó", PhoneNumber = "+36998887766" };
+            Vet vet1 = new Vet() { Id = 1, Name = "Dr. Soós Ferenc", PhoneNumber = "+36309513506", SalaryInHUF = 300000, Age = 30 };
+            Vet vet2 = new Vet() { Id = 2, Name = "Dr. Gipsz Jakab", PhoneNumber = "+36209874562", SalaryInHUF = 10, Age = 50 };
+            Vet vet3 = new Vet() { Id = 3, Name = "Dr. Bubó", PhoneNumber = "+36998887766", SalaryInHUF = 10000000, Age = 999 };
 
             Pet pet1 = new Pet() { Id = 1, Name = "Fibi", Weight = 15, Age = 2, MonthlyCostInHUF = 10000, Species = "Kutya", PetOwnerId = owner1.Id, VetId = vet1.Id };
             Pet pet2 = new Pet() { Id = 2, Name = "Max", Weight = 20, Age = 10, MonthlyCostInHUF = 12500, Species = "Kutya", PetOwnerId = owner1.Id, VetId = vet3.Id };
