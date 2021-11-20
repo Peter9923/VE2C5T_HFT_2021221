@@ -8,7 +8,7 @@ using VE2C5T_HFT_2021221.Repository;
 
 namespace VE2C5T_HFT_2021221.Logic
 {
-    class PetLogic : IPetLogic
+    public class PetLogic : IPetLogic
     {
         IPetRepository petRepo;
 

@@ -7,7 +7,7 @@ using VE2C5T_HFT_2021221.Models;
 
 namespace VE2C5T_HFT_2021221.Logic
 {
-    interface IPetLogic
+    public interface IPetLogic
     {
         void Create(Pet pet);
         Pet Read(int id);
