@@ -49,9 +49,9 @@ namespace VE2C5T_HFT_2021221.Data
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
-            PetOwner owner1 = new PetOwner() { Id = 1, Name = "Szilágyi Péter", PhoneNumber = "+36204516718" };
-            PetOwner owner2 = new PetOwner() { Id = 2, Name = "Neumann Norbert", PhoneNumber = "+36301234567" };
-            PetOwner owner3 = new PetOwner() { Id = 3, Name = "Triff Ádám", PhoneNumber = "+36207654321" };
+            PetOwner owner1 = new PetOwner() { Id = 1, Name = "Szilágyi Péter", PhoneNumber = "+36204516718", Age = 22, SalaryInHUF = 220000 };
+            PetOwner owner2 = new PetOwner() { Id = 2, Name = "Neumann Norbert", PhoneNumber = "+36301234567", Age = 23, SalaryInHUF = 10000 };
+            PetOwner owner3 = new PetOwner() { Id = 3, Name = "Triff Ádám", PhoneNumber = "+36207654321", Age = 22, SalaryInHUF = 20000 };
 
             Vet vet1 = new Vet() { Id = 1, Name = "Dr. Soós Ferenc", PhoneNumber = "+36309513506", SalaryInHUF = 300000, Age = 30 };
             Vet vet2 = new Vet() { Id = 2, Name = "Dr. Gipsz Jakab", PhoneNumber = "+36209874562", SalaryInHUF = 10, Age = 50 };

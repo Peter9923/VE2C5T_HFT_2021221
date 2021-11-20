@@ -46,6 +46,8 @@ namespace VE2C5T_HFT_2021221.Repository
 
             oldPetOwner.Name = petOwner.Name;
             oldPetOwner.PhoneNumber = petOwner.PhoneNumber;
+            oldPetOwner.Age = petOwner.Age;
+            oldPetOwner.SalaryInHUF = petOwner.SalaryInHUF;
 
             context.SaveChanges();
         }
