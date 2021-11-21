@@ -35,13 +35,6 @@ namespace VE2C5T_HFT_2021221.Repository
             // regi objektum lekerdezese
             PetOwner oldPetOwner = Read(petOwner.Id);
 
-            // TODO: null check
-
-            if (oldPetOwner == null)
-            {
-                throw new ArgumentNullException();
-            }
-
             // tulajdonsagok felulirasa
 
             oldPetOwner.Name = petOwner.Name;

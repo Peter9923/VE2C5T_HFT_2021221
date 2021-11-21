@@ -46,5 +46,39 @@ namespace VE2C5T_HFT_2021221.Logic
 
         //NON-CRUD
 
+        public IEnumerable<PetOwner> WhoHasMoreThanOnePet()
+        {
+            var q = petOwnerRepo.
+                ReadAll().
+                Where(x => x.Pets.Count() > 1).
+                Select(x => x).ToList();
+            return q;
+        }
+
+        
+        public IEnumerable<KeyValuePair<PetOwner, Pet>> WhoHasTheMostExpensivePetAndWhichPet()
+        {
+            return petOwnerRepo.ReadAll().
+                SelectMany(x => x.Pets).
+                Where(y => y.MonthlyCostInHUF == this.MostExpensivePetPrice()).
+                Select(r => new KeyValuePair<PetOwner, Pet>(r.PetOwner, r)).ToList();
+        }
+
+
+
+        private int MostExpensivePetPrice()
+        {
+            var q = ((int)petOwnerRepo.ReadAll().SelectMany(x => x.Pets).OrderByDescending(x => x.MonthlyCostInHUF).Take(1).Select(x =>  (int)x.MonthlyCostInHUF).Average());
+            return q;
+        }
+
+        public IEnumerable<PetOwner> WhichPetOwnerHasAbove_AveragePet()
+        { 
+            var average = petOwnerRepo.ReadAll().SelectMany(x => x.Pets).Average(x => x.Weight);
+            var q = petOwnerRepo.ReadAll().SelectMany(x => x.Pets).Where(x => x.Weight >= average).Select(o => o.PetOwner).Distinct().ToList();
+            return q;
+        }
+
+
     }
 }

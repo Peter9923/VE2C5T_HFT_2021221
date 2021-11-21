@@ -38,8 +38,15 @@ namespace VE2C5T_HFT_2021221.Data
                     .WithMany(petownver => petownver.Pets)
                     .HasForeignKey(pet => pet.PetOwnerId)
                     .OnDelete(DeleteBehavior.Restrict);
+
+                entity
+                    .HasOne(pet => pet.Vet)
+                    .WithMany(vet => vet.PetPatients)
+                    .HasForeignKey(pet => pet.VetId)
+                    .OnDelete(DeleteBehavior.Restrict);
             });
 
+            /*
             modelBuilder.Entity<Pet>(entity =>
             {
                 entity
@@ -48,6 +55,7 @@ namespace VE2C5T_HFT_2021221.Data
                     .HasForeignKey(pet => pet.VetId)
                     .OnDelete(DeleteBehavior.Restrict);
             });
+            */
 
             PetOwner owner1 = new PetOwner() { Id = 1, Name = "Szilágyi Péter", PhoneNumber = "+36204516718", Age = 22, SalaryInHUF = 220000 };
             PetOwner owner2 = new PetOwner() { Id = 2, Name = "Neumann Norbert", PhoneNumber = "+36301234567", Age = 23, SalaryInHUF = 10000 };
