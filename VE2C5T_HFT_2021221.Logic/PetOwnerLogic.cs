@@ -64,9 +64,7 @@ namespace VE2C5T_HFT_2021221.Logic
                 Select(r => new KeyValuePair<PetOwner, Pet>(r.PetOwner, r)).ToList();
         }
 
-
-
-        private int MostExpensivePetPrice()
+        public int MostExpensivePetPrice()
         {
             var q = ((int)petOwnerRepo.ReadAll().SelectMany(x => x.Pets).OrderByDescending(x => x.MonthlyCostInHUF).Take(1).Select(x =>  (int)x.MonthlyCostInHUF).Average());
             return q;

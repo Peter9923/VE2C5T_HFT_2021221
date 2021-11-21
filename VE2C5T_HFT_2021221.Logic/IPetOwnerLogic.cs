@@ -14,5 +14,11 @@ namespace VE2C5T_HFT_2021221.Logic
         IEnumerable<PetOwner> ReadAll();
         void Update(PetOwner petOwner);
         void Delete(int id);
+
+        public IEnumerable<PetOwner> WhoHasMoreThanOnePet();
+        public IEnumerable<KeyValuePair<PetOwner, Pet>> WhoHasTheMostExpensivePetAndWhichPet();
+        public int MostExpensivePetPrice();
+        public IEnumerable<PetOwner> WhichPetOwnerHasAbove_AveragePet();
+
     }
 }
