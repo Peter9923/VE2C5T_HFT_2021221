@@ -37,13 +37,13 @@ namespace VE2C5T_HFT_2021221.Data
                     .HasOne(pet => pet.PetOwner)
                     .WithMany(petownver => petownver.Pets)
                     .HasForeignKey(pet => pet.PetOwnerId)
-                    .OnDelete(DeleteBehavior.Restrict);
+                    .OnDelete(DeleteBehavior.Cascade);
 
                 entity
                     .HasOne(pet => pet.Vet)
                     .WithMany(vet => vet.PetPatients)
                     .HasForeignKey(pet => pet.VetId)
-                    .OnDelete(DeleteBehavior.Restrict);
+                    .OnDelete(DeleteBehavior.Cascade);
             });
 
             /*
