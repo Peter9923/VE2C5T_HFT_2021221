@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace VE2C5T_HFT_2021221.Models
@@ -33,12 +34,14 @@ namespace VE2C5T_HFT_2021221.Models
         public int PetOwnerId { get; set; }
 
         [NotMapped]
+        [JsonIgnore]
         public virtual PetOwner PetOwner { get; set; }
 
         [ForeignKey(nameof(Vet))]
         public int VetId { get; set; }
 
         [NotMapped]
+        [JsonIgnore]
         public virtual Vet Vet { get; set; }
 
 
