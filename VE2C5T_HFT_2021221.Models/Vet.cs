@@ -32,5 +32,13 @@ namespace VE2C5T_HFT_2021221.Models
         {
             PetPatients = new HashSet<Pet>();
         }
+
+        public Vet(string name, string phoneNumber, double salaryInHUF, int age)
+        {
+            Name = name;
+            PhoneNumber = phoneNumber;
+            SalaryInHUF = salaryInHUF;
+            Age = age;
+        }
     }
 }

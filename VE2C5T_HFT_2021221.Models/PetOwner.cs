@@ -10,6 +10,14 @@ namespace VE2C5T_HFT_2021221.Models
 {
     public class PetOwner
     {
+        public PetOwner(string name, string phoneNumber, int age, int salaryInHUF)
+        {
+            Name = name;
+            PhoneNumber = phoneNumber;
+            Age = age;
+            SalaryInHUF = salaryInHUF;
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }

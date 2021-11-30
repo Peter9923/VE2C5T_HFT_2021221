@@ -11,6 +11,21 @@ namespace VE2C5T_HFT_2021221.Models
 {
     public class Pet
     {
+        public Pet(string name, string species, double weight, int age, int monthlyCostInHUF, int petOwnerId, int vetId)
+        {
+            Name = name;
+            Species = species;
+            Weight = weight;
+            Age = age;
+            MonthlyCostInHUF = monthlyCostInHUF;
+            PetOwnerId = petOwnerId;
+            VetId = vetId;
+        }
+        public Pet()
+        {
+
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
