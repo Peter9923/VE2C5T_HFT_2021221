@@ -7,6 +7,7 @@ using Colorful;
 using System.Drawing;
 using Console = Colorful.Console;
 using VE2C5T_HFT_2021221.Models;
+using System.Runtime.InteropServices;
 
 namespace VE2C5T_HFT_2021221.Client
 {
@@ -54,8 +55,10 @@ namespace VE2C5T_HFT_2021221.Client
                             Case_3_Create();
                             break;
                         case "4":
+                            Case_4_Update();
                             break;
                         case "5":
+                            Case_5_Delete();
                             break;
                         case "6":
                             break;
@@ -69,7 +72,7 @@ namespace VE2C5T_HFT_2021221.Client
                 }
                 else
                 {
-                    //ELKÖSZÖNÉS
+                    Exit();
                 }
             }
         }
@@ -242,8 +245,8 @@ namespace VE2C5T_HFT_2021221.Client
             Console.WriteLine($"Weight: {pet.Weight}", Color.FloralWhite);
             Console.WriteLine($"Age: {pet.Age}", Color.FloralWhite);
             Console.WriteLine($"MonthlyCostInHUF: {pet.MonthlyCostInHUF}", Color.FloralWhite);
-            Console.WriteLine($"PetOwnerId: {pet.PetOwner}", Color.FloralWhite);
-            Console.WriteLine($"VetId: {pet.Vet}", Color.FloralWhite);
+            Console.WriteLine($"PetOwnerId: {pet.PetOwnerId}", Color.FloralWhite);
+            Console.WriteLine($"VetId: {pet.VetId}", Color.FloralWhite);
 
             Console.WriteLine();
             Console.WriteLine("BACK TO MAIN MENU --> ENTER", Color.GreenYellow);
@@ -327,6 +330,7 @@ namespace VE2C5T_HFT_2021221.Client
             Console.Clear();
             Console.WriteLine("Creating a new PET object", Color.GreenYellow);
             Console.WriteLine();
+
             Console.Write("The new pet's name: ", Color.FloralWhite);
             string name = Console.ReadLine();
 
@@ -411,5 +415,243 @@ namespace VE2C5T_HFT_2021221.Client
             Console.ReadLine();
         }
 
+        //CASE - 4 - Update
+        private void Case_4_Update()
+        {
+            switch (actualTable)
+            {
+                case "1":
+                    Case_4_1_Update_Pet();
+                    break;
+                case "2":
+                    Case_4_2_Update_PetOwner();
+                    break;
+                case "3":
+                    Case_4_3_Update_Vet();
+                    break;
+                default:
+                    break;
+            }
+        }
+        private void Case_4_1_Update_Pet()
+        {
+            var pets = rest.Get<Pet>("pet").ToList();
+            Console.Clear();
+            Console.WriteLine("Updating a Pet object.", Color.GreenYellow);
+
+            Console.WriteLine("Please select an exists ID of PetTable\nReal indexes: ", Color.GreenYellow);
+            foreach (var item in pets)
+            {
+                Console.Write($"{item.Id} | ", Color.BlueViolet);
+            }
+            Console.WriteLine();
+            Console.Write("INDEX: ", Color.GreenYellow);
+            int index = int.Parse(Console.ReadLine());
+            var pet = rest.Get<Pet>(index, "pet");
+
+            Console.WriteLine("\nDetails of Pet what you want to update.", Color.GreenYellow);
+
+            Console.WriteLine($"ID: {pet.Id}", Color.FloralWhite);
+            Console.WriteLine($"Name: {pet.Name}", Color.FloralWhite);
+            Console.WriteLine($"Species: {pet.Species}", Color.FloralWhite);
+            Console.WriteLine($"Weight: {pet.Weight}", Color.FloralWhite);
+            Console.WriteLine($"Age: {pet.Age}", Color.FloralWhite);
+            Console.WriteLine($"MonthlyCostInHUF: {pet.MonthlyCostInHUF}", Color.FloralWhite);
+            Console.WriteLine($"PetOwnerId: {pet.PetOwnerId}", Color.FloralWhite);
+            Console.WriteLine($"VetId: {pet.VetId}", Color.FloralWhite);
+
+            Console.WriteLine("\nNEW datas", Color.GreenYellow);
+
+            Console.Write($"{pet.Name} new name: ", Color.FloralWhite);
+            string name = Console.ReadLine();
+            Console.Write($"{pet.Name} new species: ", Color.FloralWhite);
+            string species = Console.ReadLine();
+            Console.Write($"{pet.Name} new weight: ", Color.FloralWhite);
+            int weight = int.Parse(Console.ReadLine());
+            Console.Write($"{pet.Name} new age: ", Color.FloralWhite);
+            int age = int.Parse(Console.ReadLine());
+            Console.Write($"{pet.Name} new monthly cost in HUF: ", Color.FloralWhite);
+            int cost = int.Parse(Console.ReadLine());
+            Console.Write($"{pet.Name} new PetOwnerId: ", Color.FloralWhite);
+            int ownerID = int.Parse(Console.ReadLine());
+            Console.Write($"{pet.Name} new VetId: ", Color.FloralWhite);
+            int vetID = int.Parse(Console.ReadLine());
+
+            Pet newPet = new Pet() { Id=pet.Id, Name = name, Species = species, Weight = weight, Age = age, MonthlyCostInHUF = cost, PetOwnerId = ownerID, VetId = vetID };
+
+            rest.Put<Pet>(newPet, "pet");
+
+            Console.WriteLine($"Update is done..", Color.GreenYellow);
+
+            Console.WriteLine();
+            Console.WriteLine("BACK TO MAIN MENU --> ENTER", Color.GreenYellow);
+            Console.ReadLine();
+
+        }
+        private void Case_4_2_Update_PetOwner()
+        {
+            var petowners = rest.Get<PetOwner>("petowner").ToList();
+            Console.Clear();
+            Console.WriteLine("Updating a PetOwner object.", Color.GreenYellow);
+            foreach (var item in petowners)
+            {
+                Console.Write($"{item.Id} | ", Color.BlueViolet);
+            }
+            System.Console.WriteLine();
+            Console.Write("INDEX: ", Color.GreenYellow);
+            int index = int.Parse(Console.ReadLine());
+
+            var owner = rest.Get<PetOwner>(index, "petowner");
+
+            Console.WriteLine("\nDetails of PetOwner what you want to update.", Color.GreenYellow);
+
+            Console.WriteLine($"ID: {owner.Id}", Color.FloralWhite);
+            Console.WriteLine($"Name: {owner.Name}", Color.FloralWhite);
+            Console.WriteLine($"PhoneNumber: {owner.PhoneNumber}", Color.FloralWhite);
+            Console.WriteLine($"Age: {owner.Age}", Color.FloralWhite);
+            Console.WriteLine($"SalaryInHUF: {owner.SalaryInHUF}", Color.FloralWhite);
+
+            Console.WriteLine("\nNEW datas", Color.GreenYellow);
+
+            Console.Write($"{owner.Name} new Name: ", Color.FloralWhite);
+            string name = Console.ReadLine();
+            Console.Write($"{owner.Name} new PhoneNumber: ", Color.FloralWhite);
+            string PhoneNumber = Console.ReadLine();
+            Console.Write($"{owner.Name} new Age: ", Color.FloralWhite);
+            int Age = int.Parse(Console.ReadLine());
+            Console.Write($"{owner.Name} new SalaryInHUF: ", Color.FloralWhite);
+            int SalaryInHUF = int.Parse(Console.ReadLine());
+
+            PetOwner newOwner = new PetOwner() { Id = owner.Id, Name = name, PhoneNumber = PhoneNumber, Age = Age, SalaryInHUF = SalaryInHUF };
+
+            rest.Put<PetOwner>(newOwner, "petowner");
+
+            Console.WriteLine($"Update is done..", Color.GreenYellow);
+
+            Console.WriteLine();
+            Console.WriteLine("BACK TO MAIN MENU --> ENTER", Color.GreenYellow);
+            Console.ReadLine();
+        }
+        private void Case_4_3_Update_Vet()
+        {
+            var vets = rest.Get<Vet>("vet").ToList();
+            Console.Clear();
+            Console.WriteLine("Updating a Vet object.", Color.GreenYellow);
+            foreach (var item in vets)
+            {
+                Console.Write($"{item.Id} | ", Color.BlueViolet);
+            }
+            System.Console.WriteLine();
+            Console.Write("INDEX: ", Color.GreenYellow);
+            int index = int.Parse(Console.ReadLine());
+
+            var vet = rest.Get<Vet>(index, "vet");
+
+            Console.WriteLine("\nDetails of Vet what you want to update.", Color.GreenYellow);
+
+            Console.WriteLine($"ID: {vet.Id}", Color.FloralWhite);
+            Console.WriteLine($"Name: {vet.Name}", Color.FloralWhite);
+            Console.WriteLine($"PhoneNumber: {vet.PhoneNumber}", Color.FloralWhite);
+            Console.WriteLine($"Age: {vet.Age}", Color.FloralWhite);
+            Console.WriteLine($"SalaryInHUF: {vet.SalaryInHUF}", Color.FloralWhite);
+
+            Console.WriteLine("\nNEW datas", Color.GreenYellow);
+
+            Console.Write($"{vet.Name} new Name: ", Color.FloralWhite);
+            string name = Console.ReadLine();
+            Console.Write($"{vet.Name} new PhoneNumber: ", Color.FloralWhite);
+            string PhoneNumber = Console.ReadLine();
+            Console.Write($"{vet.Name} new Age: ", Color.FloralWhite);
+            int Age = int.Parse(Console.ReadLine());
+            Console.Write($"{vet.Name} new SalaryInHUF: ", Color.FloralWhite);
+            int SalaryInHUF = int.Parse(Console.ReadLine());
+
+            Vet newVet = new Vet() { Id = vet.Id, Name = name, PhoneNumber = PhoneNumber, Age = Age, SalaryInHUF = SalaryInHUF };
+
+            rest.Put<Vet>(newVet, "vet");
+
+            Console.WriteLine($"Update is done..", Color.GreenYellow);
+
+            Console.WriteLine();
+            Console.WriteLine("BACK TO MAIN MENU --> ENTER", Color.GreenYellow);
+            Console.ReadLine();
+        }
+
+        //CASE - 5 - Delete
+        private void Case_5_Delete()
+        {
+            switch (actualTable)
+            {
+                case "1":
+                    Case_5_1_Delete_Pet();
+                    break;
+                case "2":
+                    Case_5_2_Delete_PetOwner();
+                    break;
+                case "3":
+                    Case_5_3_Delete_Vet();
+                    break;
+                default:
+                    break;
+            }
+        }
+        private void Case_5_1_Delete_Pet()
+        {
+        }
+        private void Case_5_2_Delete_PetOwner()
+        {
+        }
+        private void Case_5_3_Delete_Vet()
+        {
+        }
+
+
+        //case - 7
+        public void Exit()
+        {
+            Console.Clear();
+
+            string logo3 = @"$$\   $$\          $$\ $$\                                                                                                               $$\                  $$\     
+$$ | $$  |         $$ |$$ |                                                                                                              $$ |                 $$ |    
+$$ |$$  / $$$$$$\  $$ |$$ | $$$$$$\  $$$$$$\$$$$\   $$$$$$\   $$$$$$$\       $$\   $$\ $$$$$$$\  $$$$$$$\   $$$$$$\   $$$$$$\   $$$$$$\  $$ |  $$\  $$$$$$\ $$$$$$\   
+$$$$$  / $$  __$$\ $$ |$$ |$$  __$$\ $$  _$$  _$$\ $$  __$$\ $$  _____|      $$ |  $$ |$$  __$$\ $$  __$$\ $$  __$$\ $$  __$$\ $$  __$$\ $$ | $$  |$$  __$$\\_$$  _|  
+$$  $$<  $$$$$$$$ |$$ |$$ |$$$$$$$$ |$$ / $$ / $$ |$$$$$$$$ |\$$$$$$\        $$ |  $$ |$$ |  $$ |$$ |  $$ |$$$$$$$$ |$$ /  $$ |$$$$$$$$ |$$$$$$  / $$$$$$$$ | $$ |    
+$$ |\$$\ $$   ____|$$ |$$ |$$   ____|$$ | $$ | $$ |$$   ____| \____$$\       $$ |  $$ |$$ |  $$ |$$ |  $$ |$$   ____|$$ |  $$ |$$   ____|$$  _$$<  $$   ____| $$ |$$\ 
+$$ | \$$\\$$$$$$$\ $$ |$$ |\$$$$$$$\ $$ | $$ | $$ |\$$$$$$$\ $$$$$$$  |      \$$$$$$  |$$ |  $$ |$$ |  $$ |\$$$$$$$\ $$$$$$$  |\$$$$$$$\ $$ | \$$\ \$$$$$$$\  \$$$$  |
+\__|  \__|\_______|\__|\__| \_______|\__| \__| \__| \_______|\_______/        \______/ \__|  \__|\__|  \__| \_______|$$  ____/  \_______|\__|  \__| \_______|  \____/ 
+                                                                                                                     $$ |                                             
+                                                                                                                     $$ |                                             
+                                                                                                                     \__|                                             
+$$\       $$\                                         $$\                 $$$\             $$$\                                                                       
+$$ |      \__|                                        $$ |                 \$$\             \$$\                                                                      
+$$ |  $$\ $$\ $$\    $$\ $$$$$$\  $$$$$$$\   $$$$$$\  $$ |  $$\       $$\   \$$\       $$\   \$$\                                                                     
+$$ | $$  |$$ |\$$\  $$  |\____$$\ $$  __$$\ $$  __$$\ $$ | $$  |      \__|   $$ |      \__|   $$ |                                                                    
+$$$$$$  / $$ | \$$\$$  / $$$$$$$ |$$ |  $$ |$$ /  $$ |$$$$$$  /              $$ |             $$ |                                                                    
+$$  _$$<  $$ |  \$$$  / $$  __$$ |$$ |  $$ |$$ |  $$ |$$  _$$<        $$\   $$  |      $$\   $$  |                                                                    
+$$ | \$$\ $$ |   \$  /  \$$$$$$$ |$$ |  $$ |\$$$$$$  |$$ | \$$\       \__|$$$  /       \__|$$$  /       $$\                                                           
+\__|  \__|\__|    \_/    \_______|\__|  \__| \______/ \__|  \__|          \___/            \___/        \__|                                                          
+                                                                                                                                                                      
+                                                                                                                                                                      
+                                                                                                                                                                      ";
+
+
+            Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
+            ShowWindow(ThisConsole, MAXIMIZE);
+
+            System.Console.WriteLine(logo3, Color.MediumVioletRed);
+
+
+            Console.ReadLine();
+        }
+
+        [DllImport("kernel32.dll", ExactSpelling = true)]
+        private static extern IntPtr GetConsoleWindow();
+        private static IntPtr ThisConsole = GetConsoleWindow();
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+        private const int HIDE = 0;
+        private const int MAXIMIZE = 3;
+        private const int MINIMIZE = 6;
+        private const int RESTORE = 9;
     }
 }
