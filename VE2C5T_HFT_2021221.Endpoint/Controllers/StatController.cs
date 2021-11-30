@@ -39,7 +39,7 @@ namespace VE2C5T_HFT_2021221.Endpoint.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<PetOwner> WhoHasMoreThanOnePet()
+        public IEnumerable<KeyValuePair<string, int>> WhoHasMoreThanOnePet()
         {
             return petOwnerLogic.WhoHasMoreThanOnePet();
         }
@@ -53,14 +53,9 @@ namespace VE2C5T_HFT_2021221.Endpoint.Controllers
         [HttpGet]
         public int MostExpensivePetPrice()
         {
-            return petOwnerLogic.MostExpensivePetPrice();
+            return petLogic.MostExpensivePetCost();
         }
 
-        [HttpGet]
-        public IEnumerable<PetOwner> WhichPetOwnerHasAbove_AveragePet()
-        {
-            return petOwnerLogic.WhichPetOwnerHasAbove_AveragePet();
-        }
 
 
     }

@@ -57,11 +57,12 @@ namespace VE2C5T_HFT_2021221.Test
             vetLogic = new VetLogic(mockVetRepo.Object);
         }
 
+       
         [Test]
         public void Test1_WhoHasMoreThanOnePetPatient()
         {
             var q = vetLogic.WhoHasMoreThanOnePetPatient().ToList();
-            
+
             Assert.That(q.Count() == 3 && q[0].Name.Equals("Dr. Soós Ferenc") && q[1].Name.Equals("Dr. Gipsz Jakab") && q[2].Name.Equals("Dr. Bubó"));
         }
 
@@ -71,6 +72,14 @@ namespace VE2C5T_HFT_2021221.Test
             var q = vetLogic.WhichVetTreatsTheMostExpensivePet().ToList();
 
             Assert.That(q.Count() == 1 && q[0].Name.Equals("Dr. Gipsz Jakab"));
+        }
+
+        
+        [Test]
+        [TestCase(null)]
+        public void Create_Vet(Vet vet)
+        {
+            Assert.Throws(typeof(ArgumentNullException), () => vetLogic.Create(vet));
         }
 
     }

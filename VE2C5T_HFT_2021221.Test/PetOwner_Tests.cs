@@ -57,26 +57,15 @@ namespace VE2C5T_HFT_2021221.Test
         }
 
         [Test]
-        public void Test1_MostExpensivePetPrice()
-        {
-            //ACT
-            var q = petOwnerLogic.MostExpensivePetPrice();
-
-            //ASSERT
-            Assert.That(q, Is.EqualTo(40000));
-        }
-
-        [Test]
-        public void Test2_WhoHasMoreThanOnePet()
+        public void Test1_WhoHasMoreThanOnePet()
         {
             var q = petOwnerLogic.WhoHasMoreThanOnePet().ToList();
 
-            Assert.That(q[0].Name == "Szilágyi Péter" && q[1].Name == "Neumann Norbert");
-            //Assert.That(q.Where(x => x.Name == "Szilágyi Péter" || x.Name == "Neumann Norbert").Count() >= 2);
+            Assert.That(q[0].Key == "Szilágyi Péter" && q[1].Key == "Neumann Norbert");
         }
 
         [Test]
-        public void Test3_WhoHasTheMostExpensivePetAndWhichPet()
+        public void Test2_WhoHasTheMostExpensivePetAndWhichPet()
         {
             var q = petOwnerLogic.WhoHasTheMostExpensivePetAndWhichPet().ToList();
 
@@ -84,14 +73,11 @@ namespace VE2C5T_HFT_2021221.Test
         }
 
         [Test]
-        public void Test4_WhichPetOwnerHasAbove_AveragePet()
+        [TestCase(null)]
+        public void Test3_Create_PetOwner(PetOwner owner)
         {
-            var q = petOwnerLogic.WhichPetOwnerHasAbove_AveragePet().ToList();
-
-            Assert.That(q[0].Name == "Szilágyi Péter" && q[1].Name == "Neumann Norbert");
+            Assert.Throws(typeof(ArgumentNullException), () => petOwnerLogic.Create(owner));
         }
-
-
 
 
 

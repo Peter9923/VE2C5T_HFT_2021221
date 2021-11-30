@@ -14,5 +14,9 @@ namespace VE2C5T_HFT_2021221.Logic
         IEnumerable<Pet> ReadAll();
         void Update(Pet pet);
         void Delete(int id);
+
+
+        public int MostExpensivePetCost();
+        public int OldestPet();
     }
 }

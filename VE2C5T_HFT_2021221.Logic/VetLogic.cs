@@ -21,6 +21,10 @@ namespace VE2C5T_HFT_2021221.Logic
 
         public void Create(Vet vet)
         {
+            if (vet == null)
+            {
+                throw new ArgumentNullException();
+            }
             this.vetRepo.Create(vet);
         }
 

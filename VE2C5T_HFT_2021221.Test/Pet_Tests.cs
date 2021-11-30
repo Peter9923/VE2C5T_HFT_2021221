@@ -55,5 +55,12 @@ namespace VE2C5T_HFT_2021221.Test
             petLogic = new PetLogic(mockPetRepo.Object);
         }
 
+        [Test]
+        [TestCase(null)]
+        public void Create_Pet(Pet pet)
+        {
+            Assert.Throws(typeof(ArgumentNullException), () => petLogic.Create(pet) );
+        }
+
     }
 }

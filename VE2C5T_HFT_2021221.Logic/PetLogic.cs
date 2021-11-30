@@ -21,6 +21,11 @@ namespace VE2C5T_HFT_2021221.Logic
 
         public void Create(Pet pet)
         {
+            if (pet == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             this.petRepo.Create(pet);
         }
 
@@ -46,7 +51,17 @@ namespace VE2C5T_HFT_2021221.Logic
 
         //NON-CRUD
 
-        
+        public int MostExpensivePetCost()
+        {
+            return petRepo.ReadAll().OrderByDescending(x => x.MonthlyCostInHUF).FirstOrDefault().MonthlyCostInHUF;
+        }
+
+        public int OldestPet()
+        {
+            return petRepo.ReadAll().OrderByDescending(x => x.Age).FirstOrDefault().Age;
+        }
+
+
 
 
     }
