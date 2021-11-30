@@ -34,7 +34,6 @@ namespace VE2C5T_HFT_2021221.Repository
         {
             // regi objektum lekerdezese
             Vet oldVet = Read(vet.Id);
-            ;
 
             // tulajdonsagok felulirasa
 

@@ -145,12 +145,15 @@ namespace VE2C5T_HFT_2021221.Client
             switch (actualTable)
             {
                 case "1":
+                    Console.Title = "READ ALL - PET";
                     Case_1_1_Pet_ReadAll();
                     break;
                 case "2":
+                    Console.Title = "READ ALL - PETOWNER";
                     Case_1_2_PetOwner_ReadAll();
                     break;
                 case "3":
+                    Console.Title = "READ ALL - VET";
                     Case_1_3_Vet_ReadAll();
                     break;
                 default:
@@ -210,12 +213,15 @@ namespace VE2C5T_HFT_2021221.Client
             switch (actualTable)
             {
                 case "1":
+                    Console.Title = "READ - PET";
                     Case_2_1_Pet_ReadOne();
                     break;
                 case "2":
+                    Console.Title = "READ - PETOWNER";
                     Case_2_2_PetOwner_ReadOne();
                     break;
                 case "3":
+                    Console.Title = "READ - VET";
                     Case_2_3_Vet_ReadOne();
                     break;
                 default:
@@ -313,12 +319,15 @@ namespace VE2C5T_HFT_2021221.Client
             switch (actualTable)
             {
                 case "1":
+                    Console.Title = "CREATE - PET";
                     Case_3_1_Create_Pet();
                     break;
                 case "2":
+                    Console.Title = "CREATE - PETOWNER";
                     Case_3_2_Create_PetOwner();
                     break;
                 case "3":
+                    Console.Title = "CREATE - VET";
                     Case_3_3_Create_Vet();
                     break;
                 default:
@@ -421,12 +430,15 @@ namespace VE2C5T_HFT_2021221.Client
             switch (actualTable)
             {
                 case "1":
+                    Console.Title = "UPDATE - PET";
                     Case_4_1_Update_Pet();
                     break;
                 case "2":
+                    Console.Title = "UPDATE - PETOWNER";
                     Case_4_2_Update_PetOwner();
                     break;
                 case "3":
+                    Console.Title = "UPDATE - VET";
                     Case_4_3_Update_Vet();
                     break;
                 default:
@@ -583,12 +595,15 @@ namespace VE2C5T_HFT_2021221.Client
             switch (actualTable)
             {
                 case "1":
+                    Console.Title = "DELETE - PET";
                     Case_5_1_Delete_Pet();
                     break;
                 case "2":
+                    Console.Title = "DELETE - PETOWNER";
                     Case_5_2_Delete_PetOwner();
                     break;
                 case "3":
+                    Console.Title = "DELETE - VET";
                     Case_5_3_Delete_Vet();
                     break;
                 default:
@@ -597,12 +612,104 @@ namespace VE2C5T_HFT_2021221.Client
         }
         private void Case_5_1_Delete_Pet()
         {
+            var pets = rest.Get<Pet>("pet").ToList();
+            Console.Clear();
+            Console.WriteLine("Deleting a Pet object.", Color.GreenYellow);
+
+            Console.WriteLine("Please select an exists ID of PetTable\nReal indexes: ", Color.GreenYellow);
+            foreach (var item in pets)
+            {
+                Console.Write($"{item.Id} | ", Color.BlueViolet);
+            }
+            Console.WriteLine();
+            Console.Write("INDEX: ", Color.GreenYellow);
+            int index = int.Parse(Console.ReadLine());
+            var pet = rest.Get<Pet>(index, "pet");
+
+            Console.WriteLine("\nDetails of Pet what you Deleted.", Color.GreenYellow);
+
+            Console.WriteLine($"ID: {pet.Id}", Color.FloralWhite);
+            Console.WriteLine($"Name: {pet.Name}", Color.FloralWhite);
+            Console.WriteLine($"Species: {pet.Species}", Color.FloralWhite);
+            Console.WriteLine($"Weight: {pet.Weight}", Color.FloralWhite);
+            Console.WriteLine($"Age: {pet.Age}", Color.FloralWhite);
+            Console.WriteLine($"MonthlyCostInHUF: {pet.MonthlyCostInHUF}", Color.FloralWhite);
+            Console.WriteLine($"PetOwnerId: {pet.PetOwnerId}", Color.FloralWhite);
+            Console.WriteLine($"VetId: {pet.VetId}", Color.FloralWhite);
+            rest.Delete(index, "pet");
+
+            Console.WriteLine();
+            Console.WriteLine($"Delete is done..", Color.GreenYellow);
+
+            Console.WriteLine();
+            Console.WriteLine("BACK TO MAIN MENU --> ENTER", Color.GreenYellow);
+            Console.ReadLine();
+
         }
         private void Case_5_2_Delete_PetOwner()
         {
+            var petowners = rest.Get<PetOwner>("petowner").ToList();
+            Console.Clear();
+            Console.WriteLine("Deleting a PetOwner object.", Color.GreenYellow);
+            foreach (var item in petowners)
+            {
+                Console.Write($"{item.Id} | ", Color.BlueViolet);
+            }
+            System.Console.WriteLine();
+            Console.Write("INDEX: ", Color.GreenYellow);
+            int index = int.Parse(Console.ReadLine());
+
+            var owner = rest.Get<PetOwner>(index, "petowner");
+
+            Console.WriteLine("\nDetails of PetOwner what you Deleted.", Color.GreenYellow);
+
+            Console.WriteLine($"ID: {owner.Id}", Color.FloralWhite);
+            Console.WriteLine($"Name: {owner.Name}", Color.FloralWhite);
+            Console.WriteLine($"PhoneNumber: {owner.PhoneNumber}", Color.FloralWhite);
+            Console.WriteLine($"Age: {owner.Age}", Color.FloralWhite);
+            Console.WriteLine($"SalaryInHUF: {owner.SalaryInHUF}", Color.FloralWhite);
+
+            rest.Delete(index, "petowner");
+
+            Console.WriteLine();
+            Console.WriteLine($"Delete is done..", Color.GreenYellow);
+
+            Console.WriteLine();
+            Console.WriteLine("BACK TO MAIN MENU --> ENTER", Color.GreenYellow);
+            Console.ReadLine();
+
         }
         private void Case_5_3_Delete_Vet()
         {
+            var vets = rest.Get<Vet>("vet").ToList();
+            Console.Clear();
+            Console.WriteLine("Deleting a Vet object.", Color.GreenYellow);
+            foreach (var item in vets)
+            {
+                Console.Write($"{item.Id} | ", Color.BlueViolet);
+            }
+            System.Console.WriteLine();
+            Console.Write("INDEX: ", Color.GreenYellow);
+            int index = int.Parse(Console.ReadLine());
+
+            var vet = rest.Get<Vet>(index, "vet");
+
+            Console.WriteLine("\nDetails of Vet what you Deleted.", Color.GreenYellow);
+
+            Console.WriteLine($"ID: {vet.Id}", Color.FloralWhite);
+            Console.WriteLine($"Name: {vet.Name}", Color.FloralWhite);
+            Console.WriteLine($"PhoneNumber: {vet.PhoneNumber}", Color.FloralWhite);
+            Console.WriteLine($"Age: {vet.Age}", Color.FloralWhite);
+            Console.WriteLine($"SalaryInHUF: {vet.SalaryInHUF}", Color.FloralWhite);
+
+            rest.Delete(index, "vet");
+
+            Console.WriteLine();
+            Console.WriteLine($"Delete is done..", Color.GreenYellow);
+
+            Console.WriteLine();
+            Console.WriteLine("BACK TO MAIN MENU --> ENTER", Color.GreenYellow);
+            Console.ReadLine();
         }
 
 
