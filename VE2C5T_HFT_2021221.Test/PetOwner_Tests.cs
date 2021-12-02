@@ -72,6 +72,14 @@ namespace VE2C5T_HFT_2021221.Test
             Assert.That(testCase[0].Key.Equals("Szilágyi Péter") && testCase[0].Value.Equals(4));
         }
 
+        [Test]
+        public void WhoSpendsTheMostOnAnimalsHowMany()
+        {
+            var q = petOwnerLogic.WhoSpendsTheMostOnAnimalsHowMany().ToList();
+            
+            Assert.That(q.Count() == 1 && q[0].Key.Equals("Szilágyi Péter") && q[0].Value == 92500);
+        }
+
 
     }
 }

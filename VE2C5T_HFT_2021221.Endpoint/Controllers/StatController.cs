@@ -27,24 +27,6 @@ namespace VE2C5T_HFT_2021221.Endpoint.Controllers
 
 
         [HttpGet]
-        public int MostExpensivePetCost()
-        {
-            return petLogic.MostExpensivePetCost();
-        }
-
-        [HttpGet]
-        public int OldestPet()
-        {
-            return petLogic.OldestPet();
-        }
-
-        [HttpGet]
-        public double FattestPet()
-        {
-            return petLogic.FattestPet();
-        }
-
-        [HttpGet]
         public IEnumerable<KeyValuePair<Pet, PetOwner>> MostExperiencePetAndHisOwner()
         {
             return petLogic.MostExperiencePetAndHisOwner();
@@ -78,6 +60,12 @@ namespace VE2C5T_HFT_2021221.Endpoint.Controllers
         public IEnumerable<KeyValuePair<string, int>> WhoHasTheMostPetsAndHowMany()
         {
             return petOwnerLogic.WhoHasTheMostPetsAndHowMany();
+        }
+
+        [HttpGet]
+        public IEnumerable<KeyValuePair<string, int>> WhoSpendsTheMostOnAnimalsHowMany()
+        {
+            return petOwnerLogic.WhoSpendsTheMostOnAnimalsHowMany();
         }
 
 

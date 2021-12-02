@@ -62,5 +62,12 @@ namespace VE2C5T_HFT_2021221.Logic
             return q;
         }
 
+        public IEnumerable<KeyValuePair<string, int>> WhoSpendsTheMostOnAnimalsHowMany()
+        {
+            return petOwnerRepo.ReadAll().OrderByDescending(p => p.Pets.Sum(p => p.MonthlyCostInHUF))
+                .Select(p => new KeyValuePair<string, int>(p.Name, p.Pets.Sum(p => p.MonthlyCostInHUF))).Take(1);
+        }
+
+
     }
 }

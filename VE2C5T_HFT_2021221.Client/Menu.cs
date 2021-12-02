@@ -39,7 +39,11 @@ namespace VE2C5T_HFT_2021221.Client
             while (actualOption != "7")
             {
                 actualOption = MainMenu();
-                if (actualOption != "7")
+                if (actualOption == "6")
+                {
+                    Case_6_NonCRUDS();
+                }
+                else if (actualOption != "7")
                 {
                     actualTable = ChooseTable();
 
@@ -59,9 +63,6 @@ namespace VE2C5T_HFT_2021221.Client
                             break;
                         case "5":
                             Case_5_Delete();
-                            break;
-                        case "6":
-                            Case_6_NonCRUDS();
                             break;
                         default:
                             break;
@@ -716,15 +717,26 @@ namespace VE2C5T_HFT_2021221.Client
         private void NonCrud_SUbMenu()
         {
             Console.Clear();
-            Console.WriteLine("1");
-            Console.WriteLine("2");
-            Console.WriteLine("3");
-            Console.WriteLine("4");
-            Console.WriteLine("5");
-            Console.WriteLine("6");
-            Console.WriteLine("7");
-            Console.WriteLine("8");
-            Console.WriteLine("9");
+            Console.Write("   [", Color.BlueViolet); Console.Write(" 1 ", Color.OrangeRed); Console.Write("]", Color.BlueViolet);
+            Console.WriteLine("  Most Experience Pet And His Owner", Color.OrangeRed);
+
+            Console.Write("   [", Color.BlueViolet); Console.Write(" 2 ", Color.OrangeRed); Console.Write("]", Color.BlueViolet);
+            Console.WriteLine("  Group Pets By Species And Their AVGage", Color.OrangeRed);
+
+            Console.Write("   [", Color.BlueViolet); Console.Write(" 3 ", Color.OrangeRed); Console.Write("]", Color.BlueViolet);
+            Console.WriteLine("  Group Pets By Species And Their AVGcost", Color.OrangeRed);
+
+            Console.Write("   [", Color.BlueViolet); Console.Write(" 4 ", Color.OrangeRed); Console.Write("]", Color.BlueViolet);
+            Console.WriteLine("  Which Vet Has The Most Fattes tPet", Color.OrangeRed);
+
+            Console.Write("   [", Color.BlueViolet); Console.Write(" 5 ", Color.OrangeRed); Console.Write("]", Color.BlueViolet);
+            Console.WriteLine("  Which Vet Treats More Than One Pet And How Many", Color.OrangeRed);
+
+            Console.Write("   [", Color.BlueViolet); Console.Write(" 6 ", Color.OrangeRed); Console.Write("]", Color.BlueViolet);
+            Console.WriteLine("  Who Has The Most Pets And How Many", Color.OrangeRed);
+
+            Console.Write("   [", Color.BlueViolet); Console.Write(" 6 ", Color.OrangeRed); Console.Write("]", Color.BlueViolet);
+            Console.WriteLine("  Who Spends The Most On Animals How Many", Color.OrangeRed);
 
             Console.Write("Select your option: ");
         }
@@ -736,45 +748,157 @@ namespace VE2C5T_HFT_2021221.Client
             switch (option)
             {
                 case "1":
-                    Console.Title = "DELETE - PET";
-                    Case_5_1_Delete_Pet();
+                    Console.Title = "MostExperiencePetAndHisOwner";
+                    Case_1_NonCruds();
                     break;
                 case "2":
-                    Console.Title = "DELETE - PETOWNER";
-                    Case_5_2_Delete_PetOwner();
+                    Console.Title = "GrupPetsBySpeciesAndTheirAVGage";
+                    Case_2_NonCruds();
                     break;
                 case "3":
-                    Console.Title = "DELETE - VET";
-                    Case_5_3_Delete_Vet();
+                    Console.Title = "GrupPetsBySpeciesAndTheirAVGcost";
+                    Case_3_NonCruds();
                     break;
                 case "4":
-                    Console.Title = "DELETE - VET";
-                    Case_5_3_Delete_Vet();
+                    Console.Title = "WhichVetHasTheMostFattestPet";
+                    Case_4_NonCruds();
                     break;
                 case "5":
-                    Console.Title = "DELETE - VET";
-                    Case_5_3_Delete_Vet();
+                    Console.Title = "WhichVetTreatsMoreThanOnePetAndHowMany";
+                    Case_5_NonCruds();
                     break;
                 case "6":
-                    Console.Title = "DELETE - VET";
-                    Case_5_3_Delete_Vet();
+                    Console.Title = "WhoHasTheMostPetsAndHowMany";
+                    Case_6_NonCruds();
                     break;
-                case "7":
-                    Console.Title = "DELETE - VET";
-                    Case_5_3_Delete_Vet();
-                    break;
-                case "8":
-                    Console.Title = "DELETE - VET";
-                    Case_5_3_Delete_Vet();
-                    break;
-                case "9":
-                    Console.Title = "DELETE - VET";
-                    Case_5_3_Delete_Vet();
+                case "6":
+                    Console.Title = "WhoSpendsTheMostOnAnimalsHowMany";
+                    Case_7_NonCruds();
                     break;
                 default:
                     break;
             }
         }
+        private void Case_1_NonCruds()
+        {
+            Console.Clear();
+            var q = rest.Get<KeyValuePair<Pet, PetOwner>>("stat/MostExperiencePetAndHisOwner").ToList();
+
+            Console.WriteLine("Details of most experience pet and his owner");
+            Console.WriteLine("Details of pet");
+            Console.WriteLine("Pet Id: "+ q[0].Key.Id);
+            Console.WriteLine("Pet Name: " + q[0].Key.Name);
+            Console.WriteLine("Pet Age: " + q[0].Key.Age);
+            Console.WriteLine("Pet MonthlyCostInHUF: " + q[0].Key.MonthlyCostInHUF);
+            Console.WriteLine("Pet Species: " + q[0].Key.Species);
+            Console.WriteLine("Pet VetId: " + q[0].Key.VetId);
+            Console.WriteLine("Pet PetOwnerId " + q[0].Key.PetOwnerId);
+
+            Console.WriteLine("\nDetails of owner");
+            Console.WriteLine("Owner Id: " + q[0].Value.Id);
+            Console.WriteLine("Owner Name: " + q[0].Value.Name);
+            Console.WriteLine("Owner Age: " + q[0].Value.Age);
+            Console.WriteLine("Owner PhoneNumber: " + q[0].Value.PhoneNumber);
+            Console.WriteLine("Owner SalaryInHUF: " + q[0].Value.SalaryInHUF);
+
+            Console.WriteLine();
+            Console.WriteLine("BACK TO MAIN MENU --> ENTER", Color.GreenYellow);
+            Console.ReadLine();
+        }
+        private void Case_2_NonCruds()
+        {
+            Console.Clear();
+            var q = rest.Get<KeyValuePair<string, int>>("stat/GrupPetsBySpeciesAndTheirAVGage").ToList();
+
+            Console.WriteLine(String.Format("|{0,25}|{1,15}|", "Species", "AVG Age"), Color.GreenYellow);
+            foreach (var item in q)
+            {
+                Console.WriteLine((String.Format("|{0,25}|{1,15}|", item.Key.ToString(), item.Value.ToString())), Color.BlueViolet);
+            }
+            
+            Console.WriteLine();
+            Console.WriteLine("BACK TO MAIN MENU --> ENTER", Color.GreenYellow);
+            Console.ReadLine();
+        }
+        private void Case_3_NonCruds()
+        {
+            Console.Clear();
+            var q = rest.Get<KeyValuePair<string, int>>("stat/GrupPetsBySpeciesAndTheirAVGcost").ToList();
+
+            Console.WriteLine((String.Format("|{0,25}|{1,15}|", "Species", "AVG Cost")), Color.GreenYellow);
+            foreach (var item in q)
+            {
+                Console.WriteLine((String.Format("|{0,25}|{1,15}|", item.Key.ToString(), item.Value.ToString())), Color.BlueViolet);
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("BACK TO MAIN MENU --> ENTER", Color.GreenYellow);
+            Console.ReadLine();
+        }
+        private void Case_4_NonCruds()
+        {
+            Console.Clear();
+            var q = rest.Get<KeyValuePair<Vet, Pet>>("stat/WhichVetHasTheMostFattestPet").ToList().ToList();
+
+            Console.WriteLine("Details Vet and his/her pet, who is the fattest pet.");
+            Console.WriteLine("Details of pet");
+            Console.WriteLine("Pet Id: " + q[0].Value.Id);
+            Console.WriteLine("Pet Name: " + q[0].Value.Name);
+            Console.WriteLine("Pet Age: " + q[0].Value.Age);
+            Console.WriteLine("Pet MonthlyCostInHUF: " + q[0].Value.MonthlyCostInHUF);
+            Console.WriteLine("Pet Species: " + q[0].Value.Species);
+            Console.WriteLine("Pet VetId: " + q[0].Value.VetId);
+            Console.WriteLine("Pet PetOwnerId " + q[0].Value.PetOwnerId);
+
+            Console.WriteLine("\nDetails of vet");
+            Console.WriteLine("Vet Id: " + q[0].Key.Id);
+            Console.WriteLine("Vet Name: " + q[0].Key.Name);
+            Console.WriteLine("Vet Age: " + q[0].Key.Age);
+            Console.WriteLine("Vet PhoneNumber: " + q[0].Key.PhoneNumber);
+            Console.WriteLine("Vet SalaryInHUF: " + q[0].Key.SalaryInHUF);
+
+            Console.WriteLine();
+            Console.WriteLine("BACK TO MAIN MENU --> ENTER", Color.GreenYellow);
+            Console.ReadLine();
+        }
+        private void Case_5_NonCruds()
+        {
+            Console.Clear();
+            var q = rest.Get<KeyValuePair<string, int>>("stat/WhichVetTreatsMoreThanOnePetAndHowMany").ToList();
+
+            System.Console.WriteLine();
+            Console.WriteLine($"The vet of year is {q[0].Key}, who treating {q[0].Value} animals.");
+
+            Console.WriteLine();
+            Console.WriteLine("BACK TO MAIN MENU --> ENTER", Color.GreenYellow);
+            Console.ReadLine();
+        }
+        private void Case_6_NonCruds()
+        {
+            Console.Clear();
+            var q = rest.Get<KeyValuePair<string, int>>("stat/WhoHasTheMostPetsAndHowMany").ToList();
+
+            System.Console.WriteLine();
+            System.Console.WriteLine($"The greatest animal lover is {q[0].Key}, who has {q[0].Value} amimals..");
+
+            Console.WriteLine();
+            Console.WriteLine("BACK TO MAIN MENU --> ENTER", Color.GreenYellow);
+            Console.ReadLine();
+        }
+        private void Case_7_NonCruds()
+        {
+            Console.Clear();
+            var q = rest.Get<KeyValuePair<string, int>>("stat/WhoSpendsTheMostOnAnimalsHowMany").ToList();
+
+            System.Console.WriteLine();
+            System.Console.WriteLine($"The richest owner who spends a lot of money to animals is {q[0].Key}, who spends {q[0].Value} HUF / Month..");
+
+            Console.WriteLine();
+            Console.WriteLine("BACK TO MAIN MENU --> ENTER", Color.GreenYellow);
+            Console.ReadLine();
+        }
+
+
 
         //case - 7
         public void Exit()

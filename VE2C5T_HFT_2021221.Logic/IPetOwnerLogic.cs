@@ -17,5 +17,6 @@ namespace VE2C5T_HFT_2021221.Logic
 
         //non crud
         public IEnumerable<KeyValuePair<string, int>> WhoHasTheMostPetsAndHowMany();
+        public IEnumerable<KeyValuePair<string, int>> WhoSpendsTheMostOnAnimalsHowMany();
     }
 }
