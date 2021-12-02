@@ -55,11 +55,92 @@ namespace VE2C5T_HFT_2021221.Test
             petLogic = new PetLogic(mockPetRepo.Object);
         }
 
+
+        static Pet[] petsTest =
+        {
+           new Pet("","Macska",10,20,30,1,1),
+           new Pet("Cirmi","",15,10,10000,1,1),
+           null
+        };
+
         [Test]
-        [TestCase(null)]
+        [TestCaseSource(nameof(petsTest))]
         public void Create_Pet(Pet pet)
         {
-            Assert.Throws(typeof(ArgumentNullException), () => petLogic.Create(pet) );
+            Assert.Throws(typeof(ArgumentNullException), () => petLogic.Create(pet), null );
+        }
+
+        [Test]
+        public void MostExpensivePetCost()
+        {
+            var testCase = petLogic.MostExpensivePetCost();
+
+            Assert.That(testCase == 40000);
+        }
+        [Test]
+        public void OldestPet()
+        {
+            var testCase = petLogic.OldestPet();
+
+            Assert.That(testCase == 25);
+        }
+        [Test]
+        public void FattestPet()
+        {
+            var testCase = petLogic.FattestPet();
+            Assert.That(testCase == 50);
+        }
+
+        [Test]
+        public void MostExperiencePetAndHisOwner()
+        {
+            var testCase = petLogic.MostExperiencePetAndHisOwner().ToList();
+
+            Assert.That(testCase.Count() == 1 && testCase[0].Key.Name.Equals("Charlie") && testCase[0].Key.MonthlyCostInHUF == 40000 &&
+                testCase[0].Value.Name.Equals("Szilágyi Péter"));
+        }
+
+        [Test]
+        public void GrupPetsBySpeciesAndTheirAVGage()
+        {
+            var testCase = petLogic.GrupPetsBySpeciesAndTheirAVGage().ToList();
+
+            Assert.That(testCase.Count() == 5 && testCase[0].Key.Equals("Kutya")
+                && testCase[1].Key.Equals("Macska")
+                && testCase[2].Key.Equals("Hal")
+                && testCase[3].Key.Equals("Csimpánz")
+                && testCase[4].Key.Equals("Gyűrűsfarkú maki")
+                && testCase[0].Value == 9
+                && testCase[1].Value == 8
+                && testCase[2].Value == 1
+                && testCase[3].Value == 25
+                && testCase[4].Value == 18);
+        }
+
+        [Test]
+        public void GrupPetsBySpeciesAndTheirAVGcost()
+        {
+            var testCase = petLogic.GrupPetsBySpeciesAndTheirAVGcost().ToList();
+
+            Assert.That(testCase.Count() == 5 && testCase[0].Key.Equals("Kutya")
+                && testCase[1].Key.Equals("Macska")
+                && testCase[2].Key.Equals("Hal")
+                && testCase[3].Key.Equals("Csimpánz")
+                && testCase[4].Key.Equals("Gyűrűsfarkú maki")
+                && testCase[0].Value == 10833
+                && testCase[1].Value == 3500
+                && testCase[2].Value == 2000
+                && testCase[3].Value == 40000
+                && testCase[4].Value == 30000);
+        }
+
+        [Test]
+        public void WhichVetHasTheMostFattestPet()
+        {
+            var testCase = petLogic.WhichVetHasTheMostFattestPet().ToList();
+
+            Assert.That(testCase.Count() == 1 && testCase[0].Key.Name.Equals("Dr. Gipsz Jakab") && 
+                testCase[0].Value.Name.Equals("Charlie") && testCase[0].Value.Weight == 50);
         }
 
     }

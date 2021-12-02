@@ -15,7 +15,6 @@ namespace VE2C5T_HFT_2021221.Logic
         void Update(Vet vet);
         void Delete(int id);
 
-        public IEnumerable<Vet> WhoHasMoreThanOnePetPatient();
-        public IEnumerable<Vet> WhichVetTreatsTheMostExpensivePet();
+        public IEnumerable<KeyValuePair<string, int>> WhichVetTreatsMoreThanOnePetAndHowMany();
     }
 }

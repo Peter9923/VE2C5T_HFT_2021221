@@ -18,6 +18,8 @@ namespace VE2C5T_HFT_2021221.Client
 
             RestService rest = new RestService("http://localhost:60557");
 
+            //var q = rest.Get<KeyValuePair<string, int>>("stat/WhoHasMoreThanOnePet");
+            
             //var pets = rest.Get<Pet>("pet").ToList();
             //var vets = rest.Get<Vet>("vet");
             //var petowners = rest.Get<PetOwner>("petowner");

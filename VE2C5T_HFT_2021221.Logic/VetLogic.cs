@@ -50,24 +50,16 @@ namespace VE2C5T_HFT_2021221.Logic
 
         //NON-CRUD
 
-        public IEnumerable<Vet> WhoHasMoreThanOnePetPatient()
+        public IEnumerable<KeyValuePair<string, int>> WhichVetTreatsMoreThanOnePetAndHowMany()
         {
             var q = vetRepo.
                 ReadAll().
                 Where(x => x.PetPatients.Count() > 1).
-                Select(x => x).ToList();
+                Select(x => new KeyValuePair<string,int>(x.Name, x.PetPatients.Count())).ToList();
             return q;
         }
 
-        public IEnumerable<Vet> WhichVetTreatsTheMostExpensivePet()
-        {
-            var q = vetRepo.ReadAll().
-                SelectMany(x => x.PetPatients).
-                OrderByDescending(x => x.MonthlyCostInHUF).
-                Take(1).
-                Select(x => x.Vet).ToList();
-            return q;
-        }
+
 
     }
 }

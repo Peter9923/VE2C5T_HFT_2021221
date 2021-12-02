@@ -21,7 +21,7 @@ namespace VE2C5T_HFT_2021221.Logic
 
         public void Create(Pet pet)
         {
-            if (pet == null)
+            if (pet == null || pet.Name == "" || pet.Species == "")
             {
                 throw new ArgumentNullException();
             }
@@ -61,8 +61,37 @@ namespace VE2C5T_HFT_2021221.Logic
             return petRepo.ReadAll().OrderByDescending(x => x.Age).FirstOrDefault().Age;
         }
 
+        public double FattestPet()
+        {
+            return petRepo.ReadAll().OrderByDescending(x => x.Weight).FirstOrDefault().Weight;
+        }
 
+        public IEnumerable<KeyValuePair<Pet, PetOwner>> MostExperiencePetAndHisOwner()
+        {
+            return petRepo.ReadAll().
+                Where(p => p.MonthlyCostInHUF == this.MostExpensivePetCost()).
+                Select(p => new KeyValuePair<Pet,PetOwner>(p, p.PetOwner)).ToList();
+        }
 
+        public IEnumerable<KeyValuePair<string, int>> GrupPetsBySpeciesAndTheirAVGage()
+        {
+            return petRepo.ReadAll()
+                .GroupBy(p => p.Species)
+                .Select(p => new KeyValuePair<string,int>(p.Key, (int)p.Average(p => p.Age))).ToList();
+        }
 
+        public IEnumerable<KeyValuePair<string, int>> GrupPetsBySpeciesAndTheirAVGcost()
+        {
+            return petRepo.ReadAll()
+                 .GroupBy(p => p.Species)
+                 .Select(p => new KeyValuePair<string, int>(p.Key, (int)p.Average(p => p.MonthlyCostInHUF))).ToList();
+        }
+
+        public IEnumerable<KeyValuePair<Vet, Pet>> WhichVetHasTheMostFattestPet()
+        {
+            return petRepo.ReadAll().
+                Where(p => p.Weight == this.FattestPet()).
+                Select(p => new KeyValuePair<Vet, Pet>(p.Vet, p)).ToList();
+        }
     }
 }

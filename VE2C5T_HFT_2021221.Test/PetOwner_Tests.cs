@@ -56,29 +56,21 @@ namespace VE2C5T_HFT_2021221.Test
             petOwnerLogic = new PetOwnerLogic(mockPetOwnerRepo.Object);
         }
 
-        [Test]
-        public void Test1_WhoHasMoreThanOnePet()
-        {
-            var q = petOwnerLogic.WhoHasMoreThanOnePet().ToList();
-
-            Assert.That(q[0].Key == "Szilágyi Péter" && q[1].Key == "Neumann Norbert");
-        }
-
-        [Test]
-        public void Test2_WhoHasTheMostExpensivePetAndWhichPet()
-        {
-            var q = petOwnerLogic.WhoHasTheMostExpensivePetAndWhichPet().ToList();
-
-            Assert.That(q[0].Key.Name == "Szilágyi Péter" && q[0].Value.Name == "Charlie" && q[0].Value.MonthlyCostInHUF == 40000);
-        }
 
         [Test]
         [TestCase(null)]
-        public void Test3_Create_PetOwner(PetOwner owner)
+        public void Create_PetOwner(PetOwner owner)
         {
-            Assert.Throws(typeof(ArgumentNullException), () => petOwnerLogic.Create(owner));
+            Assert.Throws(typeof(ArgumentNullException), () => petOwnerLogic.Create(owner), null);
         }
 
+        [Test]
+        public void WhoHasTheMostPetsAndHowMany()
+        {
+            var testCase = petOwnerLogic.WhoHasTheMostPetsAndHowMany().ToList();
+
+            Assert.That(testCase[0].Key.Equals("Szilágyi Péter") && testCase[0].Value.Equals(4));
+        }
 
 
     }

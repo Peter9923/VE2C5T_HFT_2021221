@@ -27,34 +27,59 @@ namespace VE2C5T_HFT_2021221.Endpoint.Controllers
 
 
         [HttpGet]
-        public IEnumerable<Vet> WhoHasMoreThanOnePetPatient()
-        {
-            return vetLogic.WhoHasMoreThanOnePetPatient();
-        }
-
-        [HttpGet]
-        public IEnumerable<Vet> WhichVetTreatsTheMostExpensivePet()
-        {
-            return vetLogic.WhichVetTreatsTheMostExpensivePet();
-        }
-
-        [HttpGet]
-        public IEnumerable<KeyValuePair<string, int>> WhoHasMoreThanOnePet()
-        {
-            return petOwnerLogic.WhoHasMoreThanOnePet();
-        }
-
-        [HttpGet]
-        public IEnumerable<KeyValuePair<PetOwner, Pet>> WhoHasTheMostExpensivePetAndWhichPet()
-        {
-            return petOwnerLogic.WhoHasTheMostExpensivePetAndWhichPet();
-        }
-
-        [HttpGet]
-        public int MostExpensivePetPrice()
+        public int MostExpensivePetCost()
         {
             return petLogic.MostExpensivePetCost();
         }
+
+        [HttpGet]
+        public int OldestPet()
+        {
+            return petLogic.OldestPet();
+        }
+
+        [HttpGet]
+        public double FattestPet()
+        {
+            return petLogic.FattestPet();
+        }
+
+        [HttpGet]
+        public IEnumerable<KeyValuePair<Pet, PetOwner>> MostExperiencePetAndHisOwner()
+        {
+            return petLogic.MostExperiencePetAndHisOwner();
+        }
+
+        [HttpGet]
+        public IEnumerable<KeyValuePair<string, int>> GrupPetsBySpeciesAndTheirAVGage()
+        {
+            return petLogic.GrupPetsBySpeciesAndTheirAVGage();
+        }
+
+        [HttpGet]
+        public IEnumerable<KeyValuePair<string, int>> GrupPetsBySpeciesAndTheirAVGcost()
+        {
+            return petLogic.GrupPetsBySpeciesAndTheirAVGcost();
+        }
+
+        [HttpGet]
+        public IEnumerable<KeyValuePair<Vet, Pet>> WhichVetHasTheMostFattestPet()
+        {
+            return petLogic.WhichVetHasTheMostFattestPet();
+        }
+
+        [HttpGet]
+        public IEnumerable<KeyValuePair<string, int>> WhichVetTreatsMoreThanOnePetAndHowMany()
+        {
+            return vetLogic.WhichVetTreatsMoreThanOnePetAndHowMany();
+        }
+
+        [HttpGet]
+        public IEnumerable<KeyValuePair<string, int>> WhoHasTheMostPetsAndHowMany()
+        {
+            return petOwnerLogic.WhoHasTheMostPetsAndHowMany();
+        }
+
 
 
 

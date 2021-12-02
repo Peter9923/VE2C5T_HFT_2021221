@@ -61,8 +61,7 @@ namespace VE2C5T_HFT_2021221.Client
                             Case_5_Delete();
                             break;
                         case "6":
-                            break;
-                        case "7":
+                            Case_6_NonCRUDS();
                             break;
                         default:
                             break;
@@ -712,6 +711,70 @@ namespace VE2C5T_HFT_2021221.Client
             Console.ReadLine();
         }
 
+
+        //NonCruds - 6
+        private void NonCrud_SUbMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("1");
+            Console.WriteLine("2");
+            Console.WriteLine("3");
+            Console.WriteLine("4");
+            Console.WriteLine("5");
+            Console.WriteLine("6");
+            Console.WriteLine("7");
+            Console.WriteLine("8");
+            Console.WriteLine("9");
+
+            Console.Write("Select your option: ");
+        }
+        private void Case_6_NonCRUDS()
+        {
+            Console.Title = "NONCRUDS";
+            NonCrud_SUbMenu();
+            string option = Console.ReadLine();
+            switch (option)
+            {
+                case "1":
+                    Console.Title = "DELETE - PET";
+                    Case_5_1_Delete_Pet();
+                    break;
+                case "2":
+                    Console.Title = "DELETE - PETOWNER";
+                    Case_5_2_Delete_PetOwner();
+                    break;
+                case "3":
+                    Console.Title = "DELETE - VET";
+                    Case_5_3_Delete_Vet();
+                    break;
+                case "4":
+                    Console.Title = "DELETE - VET";
+                    Case_5_3_Delete_Vet();
+                    break;
+                case "5":
+                    Console.Title = "DELETE - VET";
+                    Case_5_3_Delete_Vet();
+                    break;
+                case "6":
+                    Console.Title = "DELETE - VET";
+                    Case_5_3_Delete_Vet();
+                    break;
+                case "7":
+                    Console.Title = "DELETE - VET";
+                    Case_5_3_Delete_Vet();
+                    break;
+                case "8":
+                    Console.Title = "DELETE - VET";
+                    Case_5_3_Delete_Vet();
+                    break;
+                case "9":
+                    Console.Title = "DELETE - VET";
+                    Case_5_3_Delete_Vet();
+                    break;
+                default:
+                    break;
+            }
+        }
 
         //case - 7
         public void Exit()

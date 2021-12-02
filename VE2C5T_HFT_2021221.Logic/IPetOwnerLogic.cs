@@ -15,7 +15,7 @@ namespace VE2C5T_HFT_2021221.Logic
         void Update(PetOwner petOwner);
         void Delete(int id);
 
-        public IEnumerable<KeyValuePair<string, int>> WhoHasMoreThanOnePet();
-        public IEnumerable<KeyValuePair<PetOwner, Pet>> WhoHasTheMostExpensivePetAndWhichPet();
+        //non crud
+        public IEnumerable<KeyValuePair<string, int>> WhoHasTheMostPetsAndHowMany();
     }
 }

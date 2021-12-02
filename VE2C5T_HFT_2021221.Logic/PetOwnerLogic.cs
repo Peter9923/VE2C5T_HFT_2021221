@@ -51,23 +51,16 @@ namespace VE2C5T_HFT_2021221.Logic
 
         //NON-CRUD
 
-        public IEnumerable<KeyValuePair<string, int>> WhoHasMoreThanOnePet()
+        
+
+        public IEnumerable<KeyValuePair<string,int>> WhoHasTheMostPetsAndHowMany()
         {
-            var q = petOwnerRepo.
-                ReadAll().
-                Where(x => x.Pets.Count() > 1).
-                Select(x => new KeyValuePair<string, int>(x.Name, x.Pets.Count())).ToList();
+            var q = petOwnerRepo.ReadAll().
+                OrderByDescending(p => p.Pets.Count()).Take(1).
+                Select(p => new KeyValuePair<string,int>(p.Name, p.Pets.Count())).ToList();
 
             return q;
         }
 
-        
-        public IEnumerable<KeyValuePair<PetOwner, Pet>> WhoHasTheMostExpensivePetAndWhichPet()
-        {
-            return petOwnerRepo.ReadAll().
-                SelectMany(x => x.Pets).
-                Where(y => y.MonthlyCostInHUF == (petOwnerRepo.ReadAll().SelectMany(x=>x.Pets).OrderByDescending(x => x.MonthlyCostInHUF).FirstOrDefault().MonthlyCostInHUF) ).
-                Select(r => new KeyValuePair<PetOwner, Pet>(r.PetOwner, r)).ToList();
-        }
     }
 }

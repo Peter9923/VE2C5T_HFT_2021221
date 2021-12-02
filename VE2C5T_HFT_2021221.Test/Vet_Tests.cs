@@ -57,29 +57,24 @@ namespace VE2C5T_HFT_2021221.Test
             vetLogic = new VetLogic(mockVetRepo.Object);
         }
 
-       
-        [Test]
-        public void Test1_WhoHasMoreThanOnePetPatient()
-        {
-            var q = vetLogic.WhoHasMoreThanOnePetPatient().ToList();
-
-            Assert.That(q.Count() == 3 && q[0].Name.Equals("Dr. Soós Ferenc") && q[1].Name.Equals("Dr. Gipsz Jakab") && q[2].Name.Equals("Dr. Bubó"));
-        }
-
-        [Test]
-        public void Test2_WhichVetTreatsTheMostExpensivePet()
-        {
-            var q = vetLogic.WhichVetTreatsTheMostExpensivePet().ToList();
-
-            Assert.That(q.Count() == 1 && q[0].Name.Equals("Dr. Gipsz Jakab"));
-        }
-
         
         [Test]
         [TestCase(null)]
         public void Create_Vet(Vet vet)
         {
-            Assert.Throws(typeof(ArgumentNullException), () => vetLogic.Create(vet));
+            Assert.Throws(typeof(ArgumentNullException), () => vetLogic.Create(vet), null);
+        }
+
+        [Test]
+        public void WhichVetTreatsMoreThanOnePetAndHowMany()
+        {
+            var testCase = vetLogic.WhichVetTreatsMoreThanOnePetAndHowMany().ToList();
+
+            bool isFirstItemCorrect = testCase[0].Key.Equals("Dr.Soós Ferenc") && testCase[0].Value == 3;
+            bool isSecondItemCorrect = testCase[1].Key.Equals("Dr. Gipsz Jakab") && testCase[1].Value == 2;
+            bool isThirdItemCorrect = testCase[2].Key.Equals("Dr. Bubó") && testCase[2].Value == 2;
+            
+            Assert.That(isThirdItemCorrect.Equals(true) && isSecondItemCorrect.Equals(true)&& isThirdItemCorrect.Equals(true));
         }
 
     }
