@@ -23,6 +23,7 @@ namespace VE2C5T_HFT_2021221.Logic
         public IEnumerable<KeyValuePair<Pet, PetOwner>> MostExperiencePetAndHisOwner();
         public IEnumerable<KeyValuePair<string, int>> GrupPetsBySpeciesAndTheirAVGage();
         public IEnumerable<KeyValuePair<string, int>> GrupPetsBySpeciesAndTheirAVGcost();
+        public IEnumerable<KeyValuePair<string, int>> GrupPetsBySpeciesAndTheirAVGweight();
         public IEnumerable<KeyValuePair<Vet, Pet>> WhichVetHasTheMostFattestPet();
     }
 }

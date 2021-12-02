@@ -135,6 +135,25 @@ namespace VE2C5T_HFT_2021221.Test
         }
 
         [Test]
+        public void GrupPetsBySpeciesAndTheirAVGweight()
+        {
+            var testCase = petLogic.GrupPetsBySpeciesAndTheirAVGweight().ToList();
+
+            
+
+            Assert.That(testCase.Count() == 5 && testCase[0].Key.Equals("Kutya")
+                && testCase[1].Key.Equals("Macska")
+                && testCase[2].Key.Equals("Hal")
+                && testCase[3].Key.Equals("Csimpánz")
+                && testCase[4].Key.Equals("Gyűrűsfarkú maki")
+                && testCase[0].Value == 18
+                && testCase[1].Value == 5
+                && testCase[2].Value == 0
+                && testCase[3].Value == 50
+                && testCase[4].Value == 2);
+        }
+
+        [Test]
         public void WhichVetHasTheMostFattestPet()
         {
             var testCase = petLogic.WhichVetHasTheMostFattestPet().ToList();

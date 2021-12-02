@@ -87,6 +87,13 @@ namespace VE2C5T_HFT_2021221.Logic
                  .Select(p => new KeyValuePair<string, int>(p.Key, (int)p.Average(p => p.MonthlyCostInHUF))).ToList();
         }
 
+        public IEnumerable<KeyValuePair<string, int>> GrupPetsBySpeciesAndTheirAVGweight()
+        {
+            return petRepo.ReadAll()
+                 .GroupBy(p => p.Species)
+                 .Select(p => new KeyValuePair<string, int>(p.Key, (int)p.Average(p => p.Weight))).ToList();
+        }
+
         public IEnumerable<KeyValuePair<Vet, Pet>> WhichVetHasTheMostFattestPet()
         {
             return petRepo.ReadAll().

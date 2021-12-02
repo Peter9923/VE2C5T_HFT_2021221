@@ -735,8 +735,11 @@ namespace VE2C5T_HFT_2021221.Client
             Console.Write("   [", Color.BlueViolet); Console.Write(" 6 ", Color.OrangeRed); Console.Write("]", Color.BlueViolet);
             Console.WriteLine("  Who Has The Most Pets And How Many", Color.OrangeRed);
 
-            Console.Write("   [", Color.BlueViolet); Console.Write(" 6 ", Color.OrangeRed); Console.Write("]", Color.BlueViolet);
+            Console.Write("   [", Color.BlueViolet); Console.Write(" 7 ", Color.OrangeRed); Console.Write("]", Color.BlueViolet);
             Console.WriteLine("  Who Spends The Most On Animals How Many", Color.OrangeRed);
+
+            Console.Write("   [", Color.BlueViolet); Console.Write(" 8 ", Color.OrangeRed); Console.Write("]", Color.BlueViolet);
+            Console.WriteLine("  Group Pets By Species And Their AVGweight", Color.OrangeRed);
 
             Console.Write("Select your option: ", Color.GreenYellow);
         }
@@ -774,6 +777,10 @@ namespace VE2C5T_HFT_2021221.Client
                 case "7":
                     Console.Title = "WhoSpendsTheMostOnAnimalsHowMany";
                     Case_7_NonCruds();
+                    break;
+                case "8":
+                    Console.Title = "GrupPetsBySpeciesAndTheirAVGweight";
+                    Case_8_NonCruds();
                     break;
                 default:
                     break;
@@ -897,7 +904,21 @@ namespace VE2C5T_HFT_2021221.Client
             Console.WriteLine("BACK TO MAIN MENU --> ENTER", Color.GreenYellow);
             Console.ReadLine();
         }
+        private void Case_8_NonCruds()
+        {
+            Console.Clear();
+            var q = rest.Get<KeyValuePair<string, int>>("stat/GrupPetsBySpeciesAndTheirAVGweight").ToList();
 
+            Console.WriteLine(String.Format("|{0,25}|{1,15}|", "Species", "AVG Weight"), Color.GreenYellow);
+            foreach (var item in q)
+            {
+                Console.WriteLine((String.Format("|{0,25}|{1,15}|", item.Key.ToString(), item.Value.ToString())), Color.BlueViolet);
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("BACK TO MAIN MENU --> ENTER", Color.GreenYellow);
+            Console.ReadLine();
+        }
 
 
         //case - 7

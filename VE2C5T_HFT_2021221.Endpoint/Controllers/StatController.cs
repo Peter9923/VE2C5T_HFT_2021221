@@ -45,6 +45,12 @@ namespace VE2C5T_HFT_2021221.Endpoint.Controllers
         }
 
         [HttpGet]
+        public IEnumerable<KeyValuePair<string, int>> GrupPetsBySpeciesAndTheirAVGweight()
+        {
+            return petLogic.GrupPetsBySpeciesAndTheirAVGweight();
+        }
+
+        [HttpGet]
         public IEnumerable<KeyValuePair<Vet, Pet>> WhichVetHasTheMostFattestPet()
         {
             return petLogic.WhichVetHasTheMostFattestPet();
