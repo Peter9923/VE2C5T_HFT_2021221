@@ -738,7 +738,7 @@ namespace VE2C5T_HFT_2021221.Client
             Console.Write("   [", Color.BlueViolet); Console.Write(" 6 ", Color.OrangeRed); Console.Write("]", Color.BlueViolet);
             Console.WriteLine("  Who Spends The Most On Animals How Many", Color.OrangeRed);
 
-            Console.Write("Select your option: ");
+            Console.Write("Select your option: ", Color.GreenYellow);
         }
         private void Case_6_NonCRUDS()
         {
@@ -771,7 +771,7 @@ namespace VE2C5T_HFT_2021221.Client
                     Console.Title = "WhoHasTheMostPetsAndHowMany";
                     Case_6_NonCruds();
                     break;
-                case "6":
+                case "7":
                     Console.Title = "WhoSpendsTheMostOnAnimalsHowMany";
                     Case_7_NonCruds();
                     break;
