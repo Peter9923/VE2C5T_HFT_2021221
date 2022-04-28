@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VE2C5T_HFT_2021221.Data;
+using VE2C5T_HFT_2021221.Endpoint.Services;
 using VE2C5T_HFT_2021221.Logic;
 using VE2C5T_HFT_2021221.Repository;
 
@@ -28,6 +29,8 @@ namespace VE2C5T_HFT_2021221.Endpoint
             services.AddTransient<IPetOwnerLogic, PetOwnerLogic>();
             services.AddTransient<IPetOwnerRepository, PetOwnerRepository>();
 
+            services.AddSignalR();
+
             services.AddTransient<MyDbContext, MyDbContext>();
 
         }
@@ -45,6 +48,7 @@ namespace VE2C5T_HFT_2021221.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }

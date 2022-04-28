@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using VE2C5T_HFT_2021221.Endpoint.Services;
 using VE2C5T_HFT_2021221.Logic;
 using VE2C5T_HFT_2021221.Models;
 
@@ -15,10 +17,12 @@ namespace VE2C5T_HFT_2021221.Endpoint.Controllers
     public class VetController : ControllerBase
     {
         IVetLogic vetLogic;
+        IHubContext<SignalRHub> hub;
 
-        public VetController(IVetLogic vetLogic)
+        public VetController(IVetLogic vetLogic, IHubContext<SignalRHub> hub)
         {
             this.vetLogic = vetLogic;
+            this.hub = hub;
         }
 
         // GET: /vet
@@ -40,6 +44,7 @@ namespace VE2C5T_HFT_2021221.Endpoint.Controllers
         public void Post([FromBody] Vet value)
         {
             vetLogic.Create(value);
+            this.hub.Clients.All.SendAsync("VetCreated", value);
         }
 
         // PUT /vet
@@ -47,13 +52,16 @@ namespace VE2C5T_HFT_2021221.Endpoint.Controllers
         public void Put([FromBody] Vet value)
         {
             vetLogic.Update(value);
+            this.hub.Clients.All.SendAsync("VetUpdated", value);
         }
 
         // DELETE vet/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var vetToDelete = this.vetLogic.Read(id);
             vetLogic.Delete(id);
+            this.hub.Clients.All.SendAsync("VetDeleted", vetToDelete);
         }
     }
 }

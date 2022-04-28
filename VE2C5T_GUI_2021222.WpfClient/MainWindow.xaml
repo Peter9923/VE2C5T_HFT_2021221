@@ -1,0 +1,161 @@
+﻿<Window x:Class="VE2C5T_GUI_2021222.WpfClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VE2C5T_GUI_2021222.WpfClient"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="900" Width="900"
+        FontSize="20">
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        <TabControl>
+            <TabItem Width="150" Height="30" Header="Pets" FontFamily="Arial">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <ScrollViewer>
+                    <Grid Grid.Column="0">
+                        <StackPanel>
+                                <Label Content="Pets" Background="LightYellow" />
+                                <Grid>
+                                    <ListBox  ItemsSource="{Binding Pets}" SelectedItem="{Binding SelectedPet}" FontSize="15">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <Label Content="{Binding Name}" />
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                </Grid>
+                            </StackPanel>
+                    </Grid>
+                    </ScrollViewer>
+
+
+
+                    <StackPanel Grid.Column="1" x:Name="petStackpanel" PreviewKeyDown="petStackpanel_PreviewKeyDown">
+                        <Label Content="Id" Background="LightBlue" Padding="10" />
+                        <TextBox Text="{Binding SelectedPet.Id}" Padding="10" IsEnabled="False" />
+                        <Label Content="PetOwnerId" Background="LightBlue" Padding="10" />
+                        <TextBox Tag="0" Text="{Binding SelectedPet.PetOwnerId}" Padding="10" />
+                        <Label Content="VetId" Background="LightBlue" Padding="10" />
+                        <TextBox Tag="0" Text="{Binding SelectedPet.VetId}" Padding="10" />
+                        <Label Content="Name" Background="LightBlue" Padding="10" />
+                        <TextBox Text="{Binding SelectedPet.Name}" Padding="10" />
+                        <Label Content="Species" Background="LightBlue" Padding="10" />
+                        <TextBox Text="{Binding SelectedPet.Species}" Padding="10" />
+                        <Label Content="Weight" Background="LightBlue" Padding="10" />
+                        <TextBox Tag="0" Text="{Binding SelectedPet.Weight}" Padding="10" />
+                        <Label Content="Age" Background="LightBlue" Padding="10" />
+                        <TextBox Tag="0" Text="{Binding SelectedPet.Age}" Padding="10" />
+                        
+                        <Button Content="Create Pet" Command="{Binding CreatePetCommand}" Margin="30,10,30,10" Padding="10"/>
+                        <Button Content="Delete Pet" Command="{Binding DeletePetCommand}" Margin="30,10,30,10" Padding="10"/>
+                        <Button Content="Update Pet" Command="{Binding UpdatePetCommand}" Margin="30,10,30,10" Padding="10"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem Width="150" Height="30" Header="Vets" FontFamily="Arial">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+
+                    <ScrollViewer>
+                        <Grid  Grid.Column="0">
+                            <StackPanel>
+                                <Label  Content="Vets" Background="LightYellow" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+                                <Grid>
+                                    <ListBox ItemsSource="{Binding Vets}" SelectedItem="{Binding SelectedVet}" FontSize="15">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <Label Content="{Binding Name}" />
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                </ScrollViewer>
+
+
+
+                <StackPanel Grid.Column="2">
+                            <Label Content="Id" Background="LightBlue" Padding="10" />
+                            <TextBox Text="{Binding SelectedVet.Id}" Padding="10" IsEnabled="False" />
+                            <Label Content="Name" Background="LightBlue" Padding="10" />
+                            <TextBox Tag="0" Text="{Binding SelectedVet.Name}" Padding="10" />
+                            <Label Content="Phone Number" Background="LightBlue" Padding="10" />
+                            <TextBox Tag="0" Text="{Binding SelectedVet.PhoneNumber}" Padding="10" />
+                            <Label Content="Salary in HUF" Background="LightBlue" Padding="10" />
+                            <TextBox Text="{Binding SelectedVet.SalaryInHUF}" Padding="10" />
+                            <Label Content="Age" Background="LightBlue" Padding="10" />
+                            <TextBox Text="{Binding SelectedVet.Age}" Padding="10" />
+
+                            <Button Content="Create Vet" Command="{Binding CreateVetCommand}" Margin="30,10,30,10" Padding="10"/>
+                            <Button Content="Delete Vet" Command="{Binding DeleteVetCommand}" Margin="30,10,30,10" Padding="10"/>
+                            <Button Content="Update Vet" Command="{Binding UpdateVetCommand}" Margin="30,10,30,10" Padding="10"/>
+                        </StackPanel>
+                    </Grid>
+            </TabItem>
+
+            <TabItem Width="150" Height="30" Header="Pet Owners" FontFamily="Arial">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <ScrollViewer>
+                        <Grid Grid.Column="0">
+                            <StackPanel >
+                                <Label  Content="Pet Owners" Background="LightYellow" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+                                <Grid>
+                                    <ListBox ItemsSource="{Binding PetOwners}" SelectedItem="{Binding SelectedPetOwner}" FontSize="15">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <Label Content="{Binding Name}" />
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </ScrollViewer>
+                    
+
+                    <StackPanel Grid.Column="2">
+                        <Label Content="Id" Background="LightBlue" Padding="10" />
+                        <TextBox Text="{Binding SelectedPetOwner.Id}" Padding="10" IsEnabled="False" />
+                        <Label Content="Name" Background="LightBlue" Padding="10" />
+                        <TextBox Tag="0" Text="{Binding SelectedPetOwner.Name}" Padding="10" />
+                        <Label Content="Phone Number" Background="LightBlue" Padding="10" />
+                        <TextBox Tag="0" Text="{Binding SelectedPetOwner.PhoneNumber}" Padding="10" />
+                        <Label Content="Age" Background="LightBlue" Padding="10" />
+                        <TextBox Text="{Binding SelectedPetOwner.Age}" Padding="10" />
+                        <Label Content="Salary in HUF" Background="LightBlue" Padding="10" />
+                        <TextBox Text="{Binding SelectedPetOwner.SalaryInHUF}" Padding="10" />
+
+                        <Button Content="Create Pet Owner" Command="{Binding CreatePetOwnerCommand}" Margin="30,10,30,10" Padding="10"/>
+                        <Button Content="Delete Pet Owner" Command="{Binding DeletePetOwnerCommand}" Margin="30,10,30,10" Padding="10"/>
+                        <Button Content="Update Pet Owner" Command="{Binding UpdatePetOwnerCommand}" Margin="30,10,30,10" Padding="10"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+
+
+            
+
+
+    </Grid>
+</Window>
