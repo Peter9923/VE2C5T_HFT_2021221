@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>VET UI</title>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div id="container">
+        <a href="/petowners.html">
+            <section class="left-column"><p>Go to Pet Owner's Table</p></section>
+        </a>
+        <a href="/pets.html">
+            <section class="right-column"><p>Go to Pet's Table</p></section>
+        </a>
+        <section class="center-column"><p>VET CATALOG</p></section>
+    </div>
+
+
+    <div class="row no-gutters">
+
+        <div class="col-md-6 no-gutters">
+
+            <div class="leftside">
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Phone Number</th>
+                            <th>Age [ YEAR ]</th>
+                            <th>Salary [ HUF ]</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultArea">
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+        <div class="col-md-6 no-gutters">
+
+            <div id="formDiv" class="rightside">
+
+                <div id="formDiv" class="myDiv">
+                    <label>Vet ID</label>
+                    <input type="number" id="vetID" disabled="disabled" />
+
+                    <label>Name</label>
+                    <input type="text" id="vetname" />
+
+                    <label>Phone Number</label>
+                    <input type="text" id="vetphonenumber" />
+
+                    <label>Age</label>
+                    <input type="number" id="vetage" />
+
+                    <label>Salary [ HUF ]</label>
+                    <input type="number" id="vetsalary" />
+
+                    <button type="button" onclick="createVet()">
+                        Add Vet
+                    </button>
+                </div>
+            </div>
+
+            <div id="updateFormDiv" class="rightside">
+                <label>Vet ID</label>
+                <input type="number" id="vetToUpdateID" disabled="disabled" />
+
+                <label>Name</label>
+                <input type="text" id="vetToUpdatename" />
+
+                <label>Phone Number</label>
+                <input type="text" id="vetToUpdatephonenumber" />
+
+                <label>Age</label>
+                <input type="number" id="vetToUpdateage" />
+
+                <label>Salary [ HUF ]</label>
+                <input type="number" id="vetToUpdatesalary" />
+
+                <button type="button" onclick="update()">
+                    Update Vet
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="vetscript.js"></script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>PET UI</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div id="container">
+        <a href="/petowners.html">
+            <section class="left-column"><p>Go to Pet Owner's Table</p></section>
+        </a>
+        <a href="/vets.html">
+            <section class="right-column"><p>Go to Vet's Table</p></section>
+        </a>
+        <section class="center-column"><p>PET CATALOG</p></section>
+    </div>
+
+
+
+    <div class="row no-gutters">
+
+        <div class="col-md-6 no-gutters">
+
+            <div class="leftside">
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>PetOwner ID</th>
+                            <th>Vet ID</th>
+                            <th>Name</th>
+                            <th>Species</th>
+                            <th>Weight [ KG ]</th>
+                            <th>Age [ YEAR ]</th>
+                            <th>MonthlyCost [ HUF ]</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultArea">
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+        <div class="col-md-6 no-gutters">
+
+            <div id="formDiv" class="rightside">
+
+                <div id="formDiv" class="myDiv">
+                    <label>Pet ID</label>
+                    <input type="text" id="petID" disabled="disabled" />
+
+                    <label>Pet Name</label>
+                    <input type="text" id="petname" />
+
+                    <label>Pet Owner Id</label>
+                    <input type="number" id="petpetownerid" />
+
+                    <label>Vet Id</label>
+                    <input type="number" id="petvetid" />
+                    <label>Species</label>
+                    <input type="text" id="petspecies" />
+
+                    <label>Weight</label>
+                    <input type="number" id="petweight" />
+
+                    <label>Age</label>
+                    <input type="number" id="petage" />
+
+                    <label>MonthlyCostInHuf</label>
+                    <input type="number" id="petmonthlycost" />
+
+                    <button type="button" onclick="createPet()">
+                        Add PET
+                    </button>
+                </div>
+            </div>
+
+            <div id="updateFormDiv" class="rightside">
+                <label>Pet ID</label>
+                <input type="number" id="petToUpdateID" disabled="disabled" />
+
+                <label>Pet Name</label>
+                <input type="text" id="petnametoupdate" />
+
+                <label>Pet Owner Id</label>
+                <input type="number" id="petpetowneridtoupdate" />
+
+                <label>Vet Id</label>
+                <input type="number" id="petvetidtoupdate" />
+
+                <label>Species</label>
+                <input type="text" id="petspeciestoupdate" />
+
+                <label>Weight</label>
+                <input type="number" id="petweighttoupdate" />
+
+                <label>Age</label>
+                <input type="number" id="petagetoupdate" />
+
+                <label>MonthlyCostInHuf</label>
+                <input type="number" id="petmonthlycosttoupdate" />
+
+                <button type="button" onclick="update()">
+                    Update PET
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="petscript.js"></script>
+</body>
+</html>

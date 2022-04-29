@@ -1,0 +1,123 @@
+﻿body {
+    background-color: lightgrey;
+}
+
+.leftside , .rightside {
+    height: 50vh;
+    width: 100%;
+}
+
+@media screen and (min-width:768px) {
+    .leftside, .rightside {
+        height: 100vh;
+    }
+}
+
+.leftside {
+    background-color: lightgrey;
+}
+
+.rightside {
+    background-color: lightslategray;
+}
+
+.leftside table {
+    width: 100%
+}
+
+.leftside table, th, td {
+    border: 3px solid black;
+    text-align: center;
+}
+
+.leftside table {
+    border-collapse: collapse;
+}
+
+.leftside th, td {
+    padding: 10px;
+}
+
+.leftside th {
+    background-color: lightblue;
+}
+
+.leftside table button {
+    width: 80%;
+    margin-left: 7px;
+    margin-right: 7px;
+}
+
+#formDiv {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    border: 3px solid black;
+    font-size: 20px;
+}
+
+#formDiv input {
+    margin-bottom: 25px;
+}
+
+#formDiv label {
+    background-color: lightblue;
+    font-weight: bolder;
+}
+
+#formDiv button {
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 10px;
+}
+
+#updateFormDiv {
+    display: none;
+    flex-direction: column;
+    background-color: lightgreen;
+    margin-bottom: 20px;
+    border: 3px solid black;
+    font-size: 20px;
+}
+
+
+#updateFormDiv input {
+    margin-bottom: 25px;
+}
+
+#updateFormDiv label {
+    background-color: lightblue;
+    font-weight: bolder;
+}
+
+#updateFormDiv button {
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 10px;
+}
+
+#container section {
+    height: 50px;
+    font-size: 20px;
+}
+#container p {
+    margin-left: 50%;
+}
+
+.left-column {
+    float: left;
+    width: 33%;
+}
+
+.right-column {
+    float: right;
+    width: 33%;
+}
+
+.center-column {
+    margin: auto;
+    width: 33%;
+}
+.center-column p {
+    font-size: 30px;
+}
