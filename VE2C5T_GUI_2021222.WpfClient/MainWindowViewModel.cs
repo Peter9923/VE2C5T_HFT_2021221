@@ -36,6 +36,8 @@ namespace VE2C5T_GUI_2021222.WpfClient
                 (AVGAgeBySpeciesCommand as RelayCommand).NotifyCanExecuteChanged();
                 (AVGWeightBySpeciesCommand as RelayCommand).NotifyCanExecuteChanged();
                 (AVGCostBySpeciesCommand as RelayCommand).NotifyCanExecuteChanged();
+                (Vet1Command as RelayCommand).NotifyCanExecuteChanged();
+                (Vet2Command as RelayCommand).NotifyCanExecuteChanged();
             }
         }
 
@@ -76,6 +78,8 @@ namespace VE2C5T_GUI_2021222.WpfClient
                 }
                 OnPropertyChanged();
                 (DeletePetOwnerCommand as RelayCommand).NotifyCanExecuteChanged();
+                (Vet1Command as RelayCommand).NotifyCanExecuteChanged();
+                (Vet2Command as RelayCommand).NotifyCanExecuteChanged();
                 
             }
         }
@@ -90,6 +94,8 @@ namespace VE2C5T_GUI_2021222.WpfClient
 
         public ICommand AVGWeightBySpeciesCommand { get; set; }
         public ICommand AVGCostBySpeciesCommand { get; set; }
+        public ICommand Vet1Command { get; set; }
+        public ICommand Vet2Command { get; set; }
 
         public MainWindowViewModel()
         {
@@ -115,31 +121,6 @@ namespace VE2C5T_GUI_2021222.WpfClient
 
                 UpdatePetCommand = new RelayCommand(() => {
                     Pets.Update(SelectedPet); 
-                });
-
-                AVGAgeBySpeciesCommand = new RelayCommand(() => {
-                    var q = rest.Get<KeyValuePair<string, int>>("stat/GrupPetsBySpeciesAndTheirAVGage").ToList();
-                    string result = "";
-                    foreach (var item in q){
-                        result += $"Faj: {item.Key.ToString()}\n\tAVG Age: {item.Value.ToString()}\n";
-                    }
-                    MessageBox.Show(result);
-                });
-                AVGWeightBySpeciesCommand = new RelayCommand(() => {
-                    var q = rest.Get<KeyValuePair<string, int>>("stat/GrupPetsBySpeciesAndTheirAVGweight").ToList();
-                    string result = "";
-                    foreach (var item in q){
-                        result += $"Faj: {item.Key.ToString()}\n\tAVG Weight: {item.Value.ToString()}\n";
-                    }
-                    MessageBox.Show(result);
-                });
-                AVGCostBySpeciesCommand = new RelayCommand(() => {
-                    var q = rest.Get<KeyValuePair<string, int>>("stat/GrupPetsBySpeciesAndTheirAVGcost").ToList();
-                    string result = "";
-                    foreach (var item in q){
-                        result += $"Faj: {item.Key.ToString()}\n\tAVG Weight: {item.Value.ToString()}\n";
-                    }
-                    MessageBox.Show(result);
                 });
 
 
@@ -172,6 +153,50 @@ namespace VE2C5T_GUI_2021222.WpfClient
 
                 UpdatePetOwnerCommand = new RelayCommand(() => {
                     PetOwners.Update(SelectedPetOwner);
+                });
+
+
+                AVGAgeBySpeciesCommand = new RelayCommand(() => {
+                    var q = rest.Get<KeyValuePair<string, int>>("stat/GrupPetsBySpeciesAndTheirAVGage").ToList();
+                    string result = "";
+                    foreach (var item in q)
+                    {
+                        result += $"Faj: {item.Key.ToString()}\n\tAVG Age: {item.Value.ToString()}\n";
+                    }
+                    MessageBox.Show(result);
+                });
+                AVGWeightBySpeciesCommand = new RelayCommand(() => {
+                    var q = rest.Get<KeyValuePair<string, int>>("stat/GrupPetsBySpeciesAndTheirAVGweight").ToList();
+                    string result = "";
+                    foreach (var item in q)
+                    {
+                        result += $"Faj: {item.Key.ToString()}\n\tAVG Weight: {item.Value.ToString()}\n";
+                    }
+                    MessageBox.Show(result);
+                });
+                AVGCostBySpeciesCommand = new RelayCommand(() => {
+                    var q = rest.Get<KeyValuePair<string, int>>("stat/GrupPetsBySpeciesAndTheirAVGcost").ToList();
+                    string result = "";
+                    foreach (var item in q)
+                    {
+                        result += $"Faj: {item.Key.ToString()}\n\tAVG Weight: {item.Value.ToString()}\n";
+                    }
+                    MessageBox.Show(result);
+                });
+
+                Vet1Command = new RelayCommand(() => {
+                    var q = rest.Get<KeyValuePair<Vet, Pet>>("stat/WhichVetHasTheMostFattestPet").ToList();
+                    string result = $"Vet's ID: {q[0].Key.Id}\nVet's Name: {q[0].Key.Name}\n\tHis/Her patient's Id: {q[0].Key.Id}\n\tHis/Her patient's Name: {q[0].Value.Name}";
+                    MessageBox.Show(result);
+                });
+
+                Vet2Command = new RelayCommand(() => {
+                    var q = rest.Get<KeyValuePair<string, int>>("stat/WhichVetTreatsMoreThanOnePetAndHowMany").ToList();
+                    string result = "";
+                    foreach (var item in q){
+                        result += $"Vet Name: {item.Key.ToString()}, Patient count: {item.Value.ToString()}\n";
+                    }
+                    MessageBox.Show(result);
                 });
 
 

@@ -119,9 +119,28 @@
                             <Label Content="Age" Background="LightBlue" Padding="10" />
                             <TextBox Tag="0" Text="{Binding SelectedVet.Age}" Padding="10" />
 
-                            <Button Content="Create Vet" Command="{Binding CreateVetCommand}" Margin="30,10,30,10" Padding="10"/>
-                            <Button Content="Delete Vet" Command="{Binding DeleteVetCommand}" Margin="30,10,30,10" Padding="10"/>
-                            <Button Content="Update Vet" Command="{Binding UpdateVetCommand}" Margin="30,10,30,10" Padding="10"/>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel>
+                                <Button Content="Create Vet" Command="{Binding CreateVetCommand}" Margin="30,10,30,10" Padding="10"/>
+                                <Button Content="Delete Vet" Command="{Binding DeleteVetCommand}" Margin="30,10,30,10" Padding="10"/>
+                                <Button Content="Update Vet" Command="{Binding UpdateVetCommand}" Margin="30,10,30,10" Padding="10"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1">
+                                <Button Content="Most Fastest Pet and his/her Vet" Command="{Binding Vet1Command}" Margin="30,10,30,10" Padding="10"/>
+                                <Button Content="List of VETS who treat more than 1 Pet (and how many)" Command="{Binding Vet2Command}" Margin="30,10,30,10" Padding="10"/>
+                            
+                            </StackPanel>
+
+                        </Grid>
+
+                        
                         </StackPanel>
                     </Grid>
             </TabItem>
