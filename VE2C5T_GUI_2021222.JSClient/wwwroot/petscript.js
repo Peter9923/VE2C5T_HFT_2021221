@@ -14,6 +14,10 @@ async function getdata() {
             //console.log(pets);
             display();
         });
+
+    getNonCrud1();
+    getNonCrud2();
+    getNonCrud3();
 }
 
 
@@ -169,4 +173,57 @@ function update() {
 
     document.getElementById('updateFormDiv').style.display = 'none';
     document.getElementById('formDiv').style.display = 'flex';
+}
+
+
+let noncrud1 = [];
+async function getNonCrud1() {
+    await fetch('http://localhost:60557/stat/GrupPetsBySpeciesAndTheirAVGage')
+        .then(x => x.json())
+        .then(y => {
+            noncrud1 = y;
+        });
+    
+}
+
+function noncrud1ButtonClick() {
+    
+    let result = "";
+    noncrud1.forEach(x => result += "Species: " + x.key + " - AVG Age: " + x.value + "\n");
+    alert(result);
+}
+
+
+let noncrud2 = [];
+async function getNonCrud2() {
+    await fetch('http://localhost:60557/stat/GrupPetsBySpeciesAndTheirAVGweight')
+        .then(x => x.json())
+        .then(y => {
+            noncrud2 = y;
+        });
+
+}
+
+function noncrud2ButtonClick() {
+
+    let result = "";
+    noncrud2.forEach(x => result += "Species: " + x.key + " - AVG Weight: " + x.value + "\n");
+    alert(result);
+}
+
+let noncrud3 = [];
+async function getNonCrud3() {
+    await fetch('http://localhost:60557/stat/GrupPetsBySpeciesAndTheirAVGcost')
+        .then(x => x.json())
+        .then(y => {
+            noncrud3 = y;
+        });
+
+}
+
+function noncrud3ButtonClick() {
+
+    let result = "";
+    noncrud3.forEach(x => result += "Species: " + x.key + " - AVG COST: " + x.value + "\n");
+    alert(result);
 }
