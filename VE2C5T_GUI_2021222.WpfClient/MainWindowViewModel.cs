@@ -18,6 +18,7 @@ namespace VE2C5T_GUI_2021222.WpfClient
         public ICommand CreatePetCommand { get; set; }
         public ICommand DeletePetCommand { get; set; }
         public ICommand UpdatePetCommand { get; set; }
+
         private Pet selectedPet;
 
         public Pet SelectedPet
@@ -32,6 +33,9 @@ namespace VE2C5T_GUI_2021222.WpfClient
                 }
                 OnPropertyChanged();
                 (DeletePetCommand as RelayCommand).NotifyCanExecuteChanged();
+                (AVGAgeBySpeciesCommand as RelayCommand).NotifyCanExecuteChanged();
+                (AVGWeightBySpeciesCommand as RelayCommand).NotifyCanExecuteChanged();
+                (AVGCostBySpeciesCommand as RelayCommand).NotifyCanExecuteChanged();
             }
         }
 
@@ -72,6 +76,7 @@ namespace VE2C5T_GUI_2021222.WpfClient
                 }
                 OnPropertyChanged();
                 (DeletePetOwnerCommand as RelayCommand).NotifyCanExecuteChanged();
+                
             }
         }
         public ICommand CreatePetOwnerCommand { get; set; }
@@ -80,6 +85,12 @@ namespace VE2C5T_GUI_2021222.WpfClient
 
 
 
+        RestService rest;
+        public ICommand AVGAgeBySpeciesCommand { get; set; }
+
+        public ICommand AVGWeightBySpeciesCommand { get; set; }
+        public ICommand AVGCostBySpeciesCommand { get; set; }
+
         public MainWindowViewModel()
         {
             
@@ -87,6 +98,8 @@ namespace VE2C5T_GUI_2021222.WpfClient
                 Pets = new RestCollection<Pet>("http://localhost:60557/", "pet", "hub");
                 Vets = new RestCollection<Vet>("http://localhost:60557/", "vet", "hub");
                 PetOwners = new RestCollection<PetOwner>("http://localhost:60557/", "petowner", "hub");
+                
+                rest = new RestService("http://localhost:60557/");
 
                 CreatePetCommand = new RelayCommand(() => {
                     Pets.Add(new Pet(SelectedPet.Name, SelectedPet.Species, SelectedPet.Weight,
@@ -104,10 +117,37 @@ namespace VE2C5T_GUI_2021222.WpfClient
                     Pets.Update(SelectedPet); 
                 });
 
+                AVGAgeBySpeciesCommand = new RelayCommand(() => {
+                    var q = rest.Get<KeyValuePair<string, int>>("stat/GrupPetsBySpeciesAndTheirAVGage").ToList();
+                    string result = "";
+                    foreach (var item in q){
+                        result += $"Faj: {item.Key.ToString()}\n\tAVG Age: {item.Value.ToString()}\n";
+                    }
+                    MessageBox.Show(result);
+                });
+                AVGWeightBySpeciesCommand = new RelayCommand(() => {
+                    var q = rest.Get<KeyValuePair<string, int>>("stat/GrupPetsBySpeciesAndTheirAVGweight").ToList();
+                    string result = "";
+                    foreach (var item in q){
+                        result += $"Faj: {item.Key.ToString()}\n\tAVG Weight: {item.Value.ToString()}\n";
+                    }
+                    MessageBox.Show(result);
+                });
+                AVGCostBySpeciesCommand = new RelayCommand(() => {
+                    var q = rest.Get<KeyValuePair<string, int>>("stat/GrupPetsBySpeciesAndTheirAVGcost").ToList();
+                    string result = "";
+                    foreach (var item in q){
+                        result += $"Faj: {item.Key.ToString()}\n\tAVG Weight: {item.Value.ToString()}\n";
+                    }
+                    MessageBox.Show(result);
+                });
+
+
                 CreateVetCommand = new RelayCommand( () => {
                     Vet v = new Vet(SelectedVet.Name, SelectedVet.PhoneNumber, SelectedVet.SalaryInHUF, SelectedVet.Age);
                     Vets.Add(v);
                 });
+
 
                 DeleteVetCommand = new RelayCommand(() => {
                     Vets.Delete(SelectedVet.Id);
@@ -122,7 +162,6 @@ namespace VE2C5T_GUI_2021222.WpfClient
                 CreatePetOwnerCommand = new RelayCommand(() => {
                     PetOwner po = new PetOwner(SelectedPetOwner.Name, SelectedPetOwner.PhoneNumber, SelectedPetOwner.Age, SelectedPetOwner.SalaryInHUF);
                     PetOwners.Add(po);
-                    OnPropertyChanged();
                 });
 
                 DeletePetOwnerCommand = new RelayCommand(() => {
@@ -139,6 +178,8 @@ namespace VE2C5T_GUI_2021222.WpfClient
                 SelectedPet = new Pet();
                 SelectedVet = new Vet();
                 SelectedPetOwner = new PetOwner();
+
+                
             }
           
         }

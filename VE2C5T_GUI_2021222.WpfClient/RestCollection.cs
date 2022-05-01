@@ -15,7 +15,7 @@ namespace VE2C5T_GUI_2021222.WpfClient{
     {
         HttpClient client;
 
-        public RestService(string baseurl, string pingableEndpoint = "swagger")
+        public RestService(string baseurl, string pingableEndpoint =  "pet"/*"swagger"*/)
         {
             bool isOk = false;
             do

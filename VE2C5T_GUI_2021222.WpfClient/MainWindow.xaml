@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VE2C5T_GUI_2021222.WpfClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="900" Width="900"
+        Title="MainWindow" Height="1000" Width="1000"
         FontSize="20">
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
 
-    <Grid>
+    <Grid x:Name="mygrid" PreviewKeyDown="mygrid_PreviewKeyDown">
         <TabControl>
             <TabItem Width="150" Height="30" Header="Pets" FontFamily="Arial">
                 <Grid>
@@ -39,7 +39,7 @@
 
 
 
-                    <StackPanel Grid.Column="1" x:Name="petStackpanel" PreviewKeyDown="petStackpanel_PreviewKeyDown">
+                    <StackPanel Grid.Column="1" x:Name="petStackpanel">
                         <Label Content="Id" Background="LightBlue" Padding="10" />
                         <TextBox Text="{Binding SelectedPet.Id}" Padding="10" IsEnabled="False" />
                         <Label Content="PetOwnerId" Background="LightBlue" Padding="10" />
@@ -54,10 +54,29 @@
                         <TextBox Tag="0" Text="{Binding SelectedPet.Weight}" Padding="10" />
                         <Label Content="Age" Background="LightBlue" Padding="10" />
                         <TextBox Tag="0" Text="{Binding SelectedPet.Age}" Padding="10" />
-                        
-                        <Button Content="Create Pet" Command="{Binding CreatePetCommand}" Margin="30,10,30,10" Padding="10"/>
-                        <Button Content="Delete Pet" Command="{Binding DeletePetCommand}" Margin="30,10,30,10" Padding="10"/>
-                        <Button Content="Update Pet" Command="{Binding UpdatePetCommand}" Margin="30,10,30,10" Padding="10"/>
+                        <Label Content="Monthly Const In HUF" Background="LightBlue" Padding="10" />
+                        <TextBox Tag="0" Text="{Binding SelectedPet.MonthlyCostInHUF}" Padding="10" />
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel>
+                                <Button Content="Create Pet" Command="{Binding CreatePetCommand}" Margin="30,10,30,10" Padding="10"/>
+                                <Button Content="Delete Pet" Command="{Binding DeletePetCommand}" Margin="30,10,30,10" Padding="10"/>
+                                <Button Content="Update Pet" Command="{Binding UpdatePetCommand}" Margin="30,10,30,10" Padding="10"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1">
+                                <Button Content="Average Age By Species" Command="{Binding AVGAgeBySpeciesCommand}" Margin="30,10,30,10" Padding="10"/>
+                                <Button Content="Average Weight By Species" Command="{Binding AVGWeightBySpeciesCommand}" Margin="30,10,30,10" Padding="10"/>
+                                <Button Content="Average Cost By Species" Command="{Binding AVGCostBySpeciesCommand}" Margin="30,10,30,10" Padding="10"/>
+                            </StackPanel>
+
+                        </Grid>
+                          
                     </StackPanel>
                 </Grid>
             </TabItem>
@@ -92,13 +111,13 @@
                             <Label Content="Id" Background="LightBlue" Padding="10" />
                             <TextBox Text="{Binding SelectedVet.Id}" Padding="10" IsEnabled="False" />
                             <Label Content="Name" Background="LightBlue" Padding="10" />
-                            <TextBox Tag="0" Text="{Binding SelectedVet.Name}" Padding="10" />
+                            <TextBox Text="{Binding SelectedVet.Name}" Padding="10" />
                             <Label Content="Phone Number" Background="LightBlue" Padding="10" />
                             <TextBox Tag="0" Text="{Binding SelectedVet.PhoneNumber}" Padding="10" />
                             <Label Content="Salary in HUF" Background="LightBlue" Padding="10" />
-                            <TextBox Text="{Binding SelectedVet.SalaryInHUF}" Padding="10" />
+                            <TextBox Tag="0" Text="{Binding SelectedVet.SalaryInHUF}" Padding="10" />
                             <Label Content="Age" Background="LightBlue" Padding="10" />
-                            <TextBox Text="{Binding SelectedVet.Age}" Padding="10" />
+                            <TextBox Tag="0" Text="{Binding SelectedVet.Age}" Padding="10" />
 
                             <Button Content="Create Vet" Command="{Binding CreateVetCommand}" Margin="30,10,30,10" Padding="10"/>
                             <Button Content="Delete Vet" Command="{Binding DeleteVetCommand}" Margin="30,10,30,10" Padding="10"/>
@@ -136,13 +155,13 @@
                         <Label Content="Id" Background="LightBlue" Padding="10" />
                         <TextBox Text="{Binding SelectedPetOwner.Id}" Padding="10" IsEnabled="False" />
                         <Label Content="Name" Background="LightBlue" Padding="10" />
-                        <TextBox Tag="0" Text="{Binding SelectedPetOwner.Name}" Padding="10" />
+                        <TextBox Text="{Binding SelectedPetOwner.Name}" Padding="10" />
                         <Label Content="Phone Number" Background="LightBlue" Padding="10" />
                         <TextBox Tag="0" Text="{Binding SelectedPetOwner.PhoneNumber}" Padding="10" />
                         <Label Content="Age" Background="LightBlue" Padding="10" />
-                        <TextBox Text="{Binding SelectedPetOwner.Age}" Padding="10" />
+                        <TextBox Tag="0" Text="{Binding SelectedPetOwner.Age}" Padding="10" />
                         <Label Content="Salary in HUF" Background="LightBlue" Padding="10" />
-                        <TextBox Text="{Binding SelectedPetOwner.SalaryInHUF}" Padding="10" />
+                        <TextBox Tag="0" Text="{Binding SelectedPetOwner.SalaryInHUF}" Padding="10" />
 
                         <Button Content="Create Pet Owner" Command="{Binding CreatePetOwnerCommand}" Margin="30,10,30,10" Padding="10"/>
                         <Button Content="Delete Pet Owner" Command="{Binding DeletePetOwnerCommand}" Margin="30,10,30,10" Padding="10"/>
